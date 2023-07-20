@@ -12,11 +12,16 @@ null_ls.setup({
   debug = false,
   sources = {
     formatting.prettier,
+    formatting.eslint_d,
+    formatting.prettier_eslint,
+    formatting.protolint,
     -- formatting.black.with({ extra_args = { "--fast" } }),
     -- formatting.stylua,
-    -- diagnostics.flake8
+    diagnostics.protolint
   },
   should_attach = function(bufnr)
     return not vim.api.nvim_buf_get_name(bufnr):match("html")
   end,
+  on_attach = require("user.lsp.handlers").on_attach,
+  capabilities = require("user.lsp.handlers").capabilities,
 })

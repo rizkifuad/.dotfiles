@@ -86,19 +86,22 @@ require("lazy").setup({
   },
 
   {
-    "nvim-tree/nvim-tree.lua",
-    version = "*",
+    "nvim-neo-tree/neo-tree.nvim",
+    lazy = true,
+    cmd = "Neotree",
     dependencies = {
-      "nvim-tree/nvim-web-devicons",
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
     },
-    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     config = function()
-      require("user.plugins.nvimtree")
-    end,
+      require("user.plugins.neotree")
+    end
   },
 
   {
     "nvim-telescope/telescope.nvim",
+    tag = "0.1.1",
     lazy = true,
     cmd = "Telescope",
     dependencies = {
@@ -228,11 +231,12 @@ require("lazy").setup({
   },
 
   {
-    "phaazon/hop.nvim",
-    lazy = true,
-    event = "BufRead",
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = require "user.plugins.flash".keys,
     config = function()
-      require "user.plugins.hop"
+      require "user.plugins.flash".setup()
     end
   },
 

@@ -22,6 +22,8 @@
         "/Users/rizki/.config/nvim/after",
         "/Users/rizki/.local/state/nvim/lazy/readme",
         "${3rd}/luassert/library",
-        "${3rd}/luv/library"
+        "${3rd}/luv/library",
+        "/Users/rizki/.local/share/nvim/mason/packages/lua-language-server/libexec/meta/25f75475",
+        "/Users/rizki/.local/share/nvim/mason/packages/lua-language-server/libexec/meta/38913a3a"
     ]
 }

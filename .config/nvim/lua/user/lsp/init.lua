@@ -6,7 +6,7 @@ end
 require "user.plugins.fidget"
 require "user.plugins.null-ls"
 
-local servers = { "jsonls", "cssls", "tsserver", "lua_ls", "gopls", "html", "rust_analyzer", "astro" }
+local servers = { "jsonls", "cssls", "tsserver", "gopls", "html", "rust_analyzer", "astro"}
 
 require("mason").setup()
 
@@ -42,6 +42,12 @@ end
 
 
 lspconfig.sourcekit.setup({
+  on_attach = require("user.lsp.handlers").on_attach,
+  capabilities = require("user.lsp.handlers").capabilities,
+})
+
+
+lspconfig.dartls.setup({
   on_attach = require("user.lsp.handlers").on_attach,
   capabilities = require("user.lsp.handlers").capabilities,
 })

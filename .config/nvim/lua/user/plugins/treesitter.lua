@@ -18,8 +18,8 @@ configs.setup {
     "go",
     "typescript",
     "tsx",
-    "svelte"
-    -- "lua",
+    "svelte",
+    "lua",
     -- "astro"
   },                       -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   sync_install = false,    -- install languages synchronously (only applied to `ensure_installed`)
@@ -54,7 +54,7 @@ configs.setup {
       init_selection = "<CR>",
       node_incremental = "<CR>",
       scope_incremental = "<Tab>",
-      node_decremental = "<S-Tab>",
+      node_decremental = "<BS>",
       --[[ init_selection = '<c-space>',
       node_incremental = '<c-space>',
       scope_incremental = '<c-s>',

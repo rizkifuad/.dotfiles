@@ -60,8 +60,9 @@ keymap('n', '<leader>4', '<cmd>set tabstop=4 shiftwidth=4 softtabstop=4<cr>', op
 keymap('n', '<leader>8', '<cmd>set tabstop=8 shiftwidth=8 softtabstop=8<cr>', opts)
 
 -- Neotree --
-keymap('n', '<leader>a', '<cmd>NvimTreeToggle<cr>', opts)
-keymap('n', '<leader>k', '<cmd>NvimTreeFocus<cr>', opts)
+keymap('n', '<leader>a', '<cmd>Neotree toggle reveal_force_cwd<cr>', opts)
+keymap('n', '<leader>k', '<cmd>Neotree reveal_force_cwd<cr>', opts)
+keymap('n', '<leader>z', '<cmd>Neotree float<cr>', opts)
 
 -- Telescope --
 keymap('n', '<leader>r', '<cmd>Telescope oldfiles<cr>', opts)
