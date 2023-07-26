@@ -65,7 +65,6 @@ mason_nvim_dap.setup {
 
 local status_ok_nextls, nextls = pcall(require, "user.lsp.langs.nextls")
 if not status_ok_nextls then
-  print("MENGGILA")
   return
 end
 
