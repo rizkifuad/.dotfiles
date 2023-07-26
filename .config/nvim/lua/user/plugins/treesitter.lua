@@ -13,6 +13,7 @@ configs.setup {
     "javascript",
     "css",
     "json",
+    "http",
     "yaml",
     "rust",
     "go",

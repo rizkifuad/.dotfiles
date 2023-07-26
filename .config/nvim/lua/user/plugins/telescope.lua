@@ -4,6 +4,7 @@ if not status_ok then
 end
 
 local actions = require "telescope.actions"
+local command_center = require("command_center")
 
 telescope.setup {
   defaults = {
@@ -93,13 +94,46 @@ telescope.setup {
       require("telescope.themes").get_dropdown {
         codeactions = false
       }
+    },
+    command_center = {
+      components = {
+        command_center.component.DESC,
+        command_center.component.CATEGORY,
+      },
+
+      -- Spcify by what components the commands is sorted
+      -- Order does not matter
+      sort_by = {
+        command_center.component.CATEGORY,
+      },
+
+      -- Change the separator used to separate each component
+      separator = "                   ",
+
+      -- When set to false,
+      -- The description compoenent will be empty if it is not specified
+      auto_replace_desc_with_cmd = true,
+
+      -- Default title to Telescope prompt
+      prompt_title = "Command Center",
+
+      layout_config = {
+        width = 0.5
+      },
+
+      theme = require("telescope.themes").get_dropdown
     }
   },
 }
+
+require("user.settings.telescope_themes")
 telescope.load_extension("fzf")
 telescope.load_extension("live_grep_args")
 telescope.load_extension("ui-select")
 telescope.load_extension('project')
+telescope.load_extension('command_center')
+
+require("user.plugins.command_center_list")
 
 function _G.telescope_symbols()
   local opts = {
@@ -114,4 +148,3 @@ function _G.telescope_symbols()
   require('telescope.builtin').lsp_document_symbols(opts)
 end
 
-require("user.settings.telescope_themes")

@@ -68,7 +68,8 @@ keymap('n', '<leader>z', '<cmd>Neotree float<cr>', opts)
 keymap('n', '<leader>r', '<cmd>Telescope oldfiles<cr>', opts)
 keymap('n', '<C-p>', '<cmd>Telescope find_files previewer=false<cr>', opts)
 keymap('n', '\\', '<cmd>Telescope buffers<cr>', opts)
-keymap('n', '<space><space>', "<cmd>lua require'telescope'.extensions.project.project{}<cr>", opts)
+-- keymap('n', '<space><space>', "<cmd>lua require'telescope'.extensions.project.project{}<cr>", opts)
+keymap('n', '<space><space>', "<cmd>Telescope command_center<cr>", opts)
 keymap('n', '<leader>f', '<cmd>Telescope live_grep<cr>', opts)
 
 
@@ -129,6 +130,8 @@ vim.keymap.set('i', '<C-f>', function() return vim.fn['codeium#Accept']() end, {
 vim.keymap.set('i', '<c-l>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
 vim.keymap.set('i', '<c-h>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
 vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+
+
 
 -- Utilities --
 keymap("n", "<space>m", "<cmd>Mason<cr>", opts)

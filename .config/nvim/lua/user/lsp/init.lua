@@ -6,7 +6,7 @@ end
 require "user.plugins.fidget"
 require "user.plugins.null-ls"
 
-local servers = { "jsonls", "cssls", "tsserver", "gopls", "html", "rust_analyzer", "astro"}
+local servers = { "jsonls", "cssls", "tsserver", "gopls", "html", "rust_analyzer", "astro" }
 
 require("mason").setup()
 
@@ -52,10 +52,26 @@ lspconfig.dartls.setup({
   capabilities = require("user.lsp.handlers").capabilities,
 })
 
-mason_nvim_dap.setup {
-  automatic_setup = true,
 
+
+mason_nvim_dap.setup {
+  automatic_installation = true,
   ensure_installed = {
     'delve',
   },
 }
+
+
+
+local status_ok_nextls, nextls = pcall(require, "user.lsp.langs.nextls")
+if not status_ok_nextls then
+  print("MENGGILA")
+  return
+end
+
+nextls.setup({
+  on_attach = require("user.lsp.handlers").on_attach,
+  version = "0.6.0",
+  cmd = "nextls",
+  -- port = 6789
+})

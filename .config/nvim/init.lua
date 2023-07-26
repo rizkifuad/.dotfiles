@@ -109,7 +109,8 @@ require("lazy").setup({
       "nvim-telescope/telescope-ui-select.nvim",
       "nvim-telescope/telescope-project.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-      "nvim-telescope/telescope-live-grep-args.nvim"
+      "nvim-telescope/telescope-live-grep-args.nvim",
+      "FeiyouG/command_center.nvim"
     },
     config = function()
       require "user.plugins.telescope"
@@ -166,7 +167,7 @@ require("lazy").setup({
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       'jay-babu/mason-nvim-dap.nvim',
-      "j-hui/fidget.nvim",
+      { "j-hui/fidget.nvim", tag = "legacy" },
       "folke/neodev.nvim",
       "jose-elias-alvarez/null-ls.nvim",
     },
@@ -218,7 +219,7 @@ require("lazy").setup({
   {
     "tpope/vim-fugitive",
     lazy = true,
-    cmd = "Git"
+    cmd = { "Git", "Gvdiff" }
   },
 
   {
@@ -259,5 +260,23 @@ require("lazy").setup({
       require "user.plugins.toggleterm"
     end
   },
+
+  {
+    "elixir-tools/elixir-tools.nvim",
+    version = "*",
+    config = function()
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
+
+  {
+    "rest-nvim/rest.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require "user.plugins.rest"
+    end
+  }
 
 })
