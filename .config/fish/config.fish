@@ -58,6 +58,8 @@ if status is-interactive
   # tmux new
   abbr -a t "tmux_new"
 
+  abbr -a sail "./vendor/bin/sail"
+
   abbr -a godb "killall dlv; dlv debug --continue --accept-multiclient --listen=:2345 --headless=true --api-version=2 --log"
 
   abbr -a d "git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"

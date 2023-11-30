@@ -101,13 +101,14 @@ local function lsp_keymaps(client, bufnr)
   local builtin = require('telescope.builtin')
 
 
-  buf_set_keymap('n', 'gr', '<Cmd>Telescope lsp_references<CR>', opts)
-  -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  vim.keymap.set('n', 'gd',
+  buf_set_keymap('n', 'gr', '<cmd>lua require("telescope.builtin").lsp_references({file_ignore_patterns = { "test", "mock" }, show_line = false })<cr>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua require("telescope.builtin").lsp_definitions({file_ignore_patterns = { "test", "mock" }, show_line = false })<cr>', opts)
+  --[[ vim.keymap.set('n', 'gd',
     function() jump(bufnr, "textDocument/definition", builtin.lsp_definitions, function() vim.cmd "norm! gd" end) end,
-    opts)
+    opts) ]]
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  buf_set_keymap('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
+  -- buf_set_keymap('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua require("telescope.builtin").lsp_implementations({file_ignore_patterns = { "test", "mock" }, show_line = false })<cr>', opts)
   buf_set_keymap('n', '<space>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
@@ -118,7 +119,7 @@ local function lsp_keymaps(client, bufnr)
   buf_set_keymap('n', '<leader>lq', '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>', opts)
   buf_set_keymap('n', '<leader>lc', '<Cmd>lua vim.lsp.buf.code_action()<cr>', opts)
   buf_set_keymap('v', '<leader>lc', '<Cmd>lua vim.lsp.buf.range_code_action()<cr>', opts)
-  buf_set_keymap('v', '<leader>ll', '<Cmd>LspRestart<cr>', opts)
+  buf_set_keymap('n', '<leader>ll', '<Cmd>LspRestart<cr>', opts)
   buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   buf_set_keymap('n', '<space>s', '<cmd>Telescope lsp_workspace_symbols<CR>', opts)
   buf_set_keymap('n', '[g', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)

@@ -18,7 +18,7 @@ shift + alt - y : yabai -m space --mirror y-axis
 # flip along x-axis
 shift + alt - x : yabai -m space --mirror x-axis
 
-# toggle window float
+# toggle window 
 shift + alt - t : yabai -m window --toggle float --grid 4:4:1:1:2:2
 
 # toggle window gap
@@ -72,4 +72,4 @@ alt - c : open -a /Applications/Google\ Chrome.app
 alt - s : open -a /Applications/Slack.app
 alt - d : open -a /Applications/TablePlus.app
 alt - u : open -a /Applications/Upwork.app
-alt - e : open .
+#alt - e : open .

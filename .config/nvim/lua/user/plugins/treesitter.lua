@@ -5,7 +5,18 @@ end
 
 -- pcall(require('nvim-treesitter.install').update { with_sync = true })
 
+local autotag_filetypes = {
+  'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript',
+  'xml',
+  'php',
+  'markdown',
+  'astro', 'glimmer', 'handlebars', 'hbs',
+  'heex'
+}
+
 configs.setup {
+  modules = {},
+  auto_install = false,
   ensure_installed = {
     "bash",
     "fish",
@@ -30,6 +41,8 @@ configs.setup {
   },
   autotag = {
     enable = true,
+    enable_close_on_slash = true,
+    filetypes = autotag_filetypes
   },
   matchup = {
     enable = true
@@ -46,7 +59,7 @@ configs.setup {
     enable = true,
     enable_autocmd = false,
     config = {
-      typescript = { __default = '// %s', __multiline = '/* %s */' }
+      typescript = { __default = '// %s', __multiline = '/* %s */' },
     }
   },
   incremental_selection = {
@@ -121,3 +134,7 @@ configs.setup {
     },
   }
 }
+
+require('nvim-ts-autotag').setup({
+  filetypes = autotag_filetypes,
+})

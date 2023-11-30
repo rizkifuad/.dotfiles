@@ -110,11 +110,19 @@ require("lazy").setup({
       "nvim-telescope/telescope-project.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       "nvim-telescope/telescope-live-grep-args.nvim",
-      "FeiyouG/command_center.nvim"
     },
     config = function()
       require "user.plugins.telescope"
     end
+  },
+
+  {
+    "FeiyouG/commander.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require "user.plugins.commander"
+    end
+
   },
 
   {
@@ -188,14 +196,14 @@ require("lazy").setup({
     end
   },
 
-  {
+  --[[ {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufRead",
     lazy = true,
     config = function()
       require "user.plugins.indentline"
     end
-  },
+  }, ]]
 
   {
     "norcalli/nvim-colorizer.lua",
@@ -219,7 +227,7 @@ require("lazy").setup({
   {
     "tpope/vim-fugitive",
     lazy = true,
-    cmd = { "Git", "Gvdiff" }
+    cmd = { "Git", "Gvdiff", "Gdiff" }
   },
 
   {
@@ -277,6 +285,12 @@ require("lazy").setup({
     config = function()
       require "user.plugins.rest"
     end
+  },
+  "folke/zen-mode.nvim",
+  opts = {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
   }
 
 })
