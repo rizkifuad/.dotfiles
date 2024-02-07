@@ -21,6 +21,7 @@ require("luasnip/loaders/from_vscode").lazy_load()
 luasnip.filetype_extend("typescriptreact", { "html" })
 luasnip.filetype_extend("dart", { "flutter" })
 luasnip.filetype_extend("javascriptreact", { "typescriptreact" })
+luasnip.filetype_extend("astro", { "astro" })
 
 local check_backspace = function()
   local col = vim.fn.col "." - 1

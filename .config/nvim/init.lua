@@ -129,7 +129,6 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "windwp/nvim-ts-autotag",
-      "JoosepAlviste/nvim-ts-context-commentstring",
       "nvim-treesitter/nvim-treesitter-textobjects",
       "windwp/nvim-ts-autotag",
       "andymass/vim-matchup",
@@ -145,6 +144,15 @@ require("lazy").setup({
     event = "BufRead",
     config = function()
       require "user.plugins.treesitter"
+    end
+  },
+
+  {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    config = function()
+      require('ts_context_commentstring').setup {
+        enable_autocmd = false,
+      }
     end
   },
 

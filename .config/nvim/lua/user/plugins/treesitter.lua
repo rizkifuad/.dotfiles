@@ -55,13 +55,13 @@ configs.setup {
     additional_vim_regex_highlighting = true,
   },
   indent = { enable = true, disable = { "yaml" } },
-  context_commentstring = {
+  --[[ context_commentstring = {
     enable = true,
     enable_autocmd = false,
     config = {
       typescript = { __default = '// %s', __multiline = '/* %s */' },
     }
-  },
+  }, ]]
   incremental_selection = {
     enable = true,
     keymaps = {
