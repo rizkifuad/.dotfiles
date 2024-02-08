@@ -2,8 +2,8 @@ if status is-interactive
   # Commands to run in interactive sessions can go here
   # Setting default env
   set -x LANG en_US.UTF-8
-  set -x SHELL /opt/homebrew/bin/fish
-  set -U fish_user_paths /opt/homebrew/bin $fish_user_paths
+  # set -x SHELL which(fish)
+  # set -U fish_user_paths /opt/homebrew/bin $fish_user_paths
   set -x EDITOR nvim
 
   # Set N (Node Package Manager) PREFIX
@@ -19,7 +19,7 @@ if status is-interactive
 
   # Setting PATH
   set PATH $HOME/.local/bin $PATH
-  set PATH /opt/homebrew/bin $PATH
+  # set PATH /opt/homebrew/bin $PATH
   set PATH $HOME/.n/bin $PATH
   set PATH $GOBIN $PATH
   set PATH $HOME/build/flutter/bin $PATH
@@ -28,7 +28,7 @@ if status is-interactive
   set PATH $JAVA_HOME/bin $PATH
   set PATH $ANDROID_SDK_ROOT/emulator $PATH
   set PATH $ANDROID_SDK_ROOT/platform-tools $PATH
-  set PATH /opt/homebrew/opt/mysql-client@5.7/bin $PATH
+  # set PATH /opt/homebrew/opt/mysql-client@5.7/bin $PATH
   set PATH $HOME/.gvm/bin $PATH
   set PATH $HOME/.local/share/neovim/bin $PATH
 
@@ -37,7 +37,7 @@ if status is-interactive
 
   # FZF command
   set -x FZF_DEFAULT_COMMAND "rg --files --hidden"
-  fzf_configure_bindings --directory=\ct
+  #fzf_configure_bindings --directory=\ct
 
   # Tmux quick attach
   abbr -a tma tmux attach -t 
@@ -72,3 +72,5 @@ if status is-interactive
   set -px --path PATH "/Users/rizki/.bun/bin"
 
 end
+
+set -x N_PREFIX "$HOME/.n"; contains "$N_PREFIX/bin" $PATH; or set -a PATH "$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
