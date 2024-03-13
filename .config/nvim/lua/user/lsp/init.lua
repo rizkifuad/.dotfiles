@@ -6,7 +6,27 @@ end
 require "user.plugins.fidget"
 require "user.plugins.null-ls"
 
-local servers = { "jsonls", "cssls", "tsserver", "gopls", "html", "rust_analyzer", "astro" }
+
+lspconfig.tsserver.setup {
+  on_attach = require("user.lsp.handlers").on_attach,
+  capabilities = require("user.lsp.handlers").capabilities,
+  init_options = {
+    plugins = {
+      {
+        name = "@vue/typescript-plugin",
+        location = "/Users/rizki/.n/lib/node_modules/@vue/typescript-plugin",
+        languages = { "vue" },
+      },
+    },
+  },
+  filetypes = {
+    "javascript",
+    "typescript",
+    "vue"
+  },
+}
+
+local servers = { "jsonls", "cssls", "gopls", "html", "rust_analyzer", "astro" }
 
 require("mason").setup()
 
@@ -51,6 +71,7 @@ lspconfig.dartls.setup({
   on_attach = require("user.lsp.handlers").on_attach,
   capabilities = require("user.lsp.handlers").capabilities,
 })
+
 
 
 
