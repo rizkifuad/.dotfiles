@@ -139,6 +139,11 @@ local function lsp_keymaps(client, bufnr)
   if client.name == "sourcekit" then
     buf_set_keymap('n', '<space>f', "<cmd>silent !swift-format % -i<CR>", opts)
   end
+
+  if vim.bo.filetype == "vue" then
+    buf_set_keymap('n', '<space>f', "<cmd>silent norm magg=G'a<CR>", opts)
+  end
+
 end
 
 local navic = require("nvim-navic")

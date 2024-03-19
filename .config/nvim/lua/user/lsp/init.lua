@@ -22,6 +22,7 @@ lspconfig.tsserver.setup {
   filetypes = {
     "javascript",
     "typescript",
+    "typescriptreact",
     "vue"
   },
 }
