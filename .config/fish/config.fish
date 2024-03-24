@@ -3,7 +3,7 @@ if status is-interactive
   # Setting default env
   set -x LANG en_US.UTF-8
   # set -x SHELL which(fish)
-  # set -U fish_user_paths /opt/homebrew/bin $fish_user_paths
+  set -U fish_user_paths /opt/homebrew/bin $fish_user_paths
   set -x EDITOR nvim
 
   # Set N (Node Package Manager) PREFIX
@@ -43,8 +43,8 @@ if status is-interactive
   abbr -a tma tmux attach -t 
 
   # exa for ls
-  set -x EXA_ICON_SPACING 2
-  abbr -a ls "exa --icons --color=always"
+  set -x EZA_ICON_SPACING 2
+  abbr -a ls "eza --icons --color=always"
 
   # Fancy icon for tmux
   abbr -a nf "echo \"          異  \"  "

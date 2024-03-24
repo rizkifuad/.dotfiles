@@ -29,10 +29,10 @@ end
 -- TODO: backfill this to template
 M.setup = function()
   local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn",  text = "" },
-    { name = "DiagnosticSignHint",  text = "" },
-    { name = "DiagnosticSignInfo",  text = "" },
+    { name = "DiagnosticSignError", text = " " },
+    { name = "DiagnosticSignWarn",  text = " " },
+    { name = "DiagnosticSignHint",  text = " " },
+    { name = "DiagnosticSignInfo",  text = " " },
   }
 
   require("user.settings.lsp_themes")
