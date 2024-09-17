@@ -127,14 +127,7 @@ local function lsp_keymaps(client, bufnr)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
 
-  if client.name == "dartls" then
-    buf_set_keymap('n', '<space>o',
-      "<cmd>lua require('lsp_extensions.dart.outline').telescope({kind_prefixes=DART_KIND_PREFIXES})<cr>",
-      opts)
-    vim.cmd [[IndentBlanklineEnable]]
-  else
-    buf_set_keymap('n', '<space>o', '<cmd>lua telescope_symbols()<cr>', opts)
-  end
+  buf_set_keymap('n', '<space>o', '<cmd>lua telescope_symbols()<cr>', opts)
 
   if client.name == "sourcekit" then
     buf_set_keymap('n', '<space>f', "<cmd>silent !swift-format % -i<CR>", opts)

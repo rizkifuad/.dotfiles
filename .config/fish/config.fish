@@ -14,8 +14,10 @@ if status is-interactive
   # set -x GOROOT $HOME/go
   set -x GOBIN $GOPATH/bin
 
-  set -x ANDROID_SDK_ROOT $HOME/Library/Android/sdk
-  set -x JAVA_HOME /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
+  set -x ANDROID_SDK_ROOT $HOME/Library/Android
+  set -x ANDROID_HOME $HOME/Library/Android/sdk
+  set -x JAVA_HOME /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+  # set -x JAVA_HOME /opt/homebrew/opt/openjdk
 
   # Setting PATH
   set PATH $HOME/.local/bin $PATH
@@ -26,14 +28,16 @@ if status is-interactive
   set PATH $HOME/.cargo/bin $PATH
   set PATH $HOME/.pub-cache/bin $PATH
   set PATH $JAVA_HOME/bin $PATH
-  set PATH $ANDROID_SDK_ROOT/emulator $PATH
-  set PATH $ANDROID_SDK_ROOT/platform-tools $PATH
+  set PATH $ANDROID_HOME/emulator $PATH
+  set PATH $ANDROID_HOME/platform-tools $PATH
+  set PATH $ANDROID_HOME/cmdline-tools/latest/bin $PATH
   # set PATH /opt/homebrew/opt/mysql-client@5.7/bin $PATH
   set PATH $HOME/.gvm/bin $PATH
   set PATH $HOME/.local/share/neovim/bin $PATH
 
   set PATH $HOME/.gobrew/current/bin $PATH
   set PATH $HOME/.gobrew/bin $PATH
+  set PATH /Applications/WezTerm.app/Contents/MacOS $PATH
 
   # FZF command
   set -x FZF_DEFAULT_COMMAND "rg --files --hidden"

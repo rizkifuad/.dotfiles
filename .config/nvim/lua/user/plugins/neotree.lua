@@ -11,7 +11,7 @@ vim.fn.sign_define("DiagnosticSignWarn",
 vim.fn.sign_define("DiagnosticSignInfo",
   { text = " ", texthl = "DiagnosticSignInfo" })
 vim.fn.sign_define("DiagnosticSignHint",
-  { text = "", texthl = "DiagnosticSignHint" })
+  { text = " ", texthl = "DiagnosticSignHint" })
 -- NOTE: this is changed from v1.x, which used the old style of highlight groups
 -- in the form "LspDiagnosticsSignWarning"
 
@@ -70,19 +70,19 @@ neotree.setup({
         -- Change type
         added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
         modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
-        deleted   = "✖", -- this can only be used in the git_status source
-        renamed   = "", -- this can only be used in the git_status source
+        deleted   = "✖ ", -- this can only be used in the git_status source
+        renamed   = "󰑕 ", -- this can only be used in the git_status source
         -- Status type
-        untracked = "",
-        ignored   = "",
-        unstaged  = "",
-        staged    = "",
-        conflict  = "",
+        untracked = " ",
+        ignored   = " ",
+        unstaged  = "  ",
+        staged    = " ",
+        conflict  = " ",
       }
     },
   },
   window = {
-    position = "right",
+    position = "float",
     width = 40,
     mapping_options = {
       noremap = true,
@@ -95,7 +95,7 @@ neotree.setup({
       },
       ["<2-LeftMouse>"] = "open",
       ["<cr>"] = "open",
-      ["<esc>"] = "revert_preview",
+      ["<esc>"] = "cancel",
       ["P"] = { "toggle_preview", config = { use_float = true } },
       ["l"] = "focus_preview",
       ["S"] = "open_split",
@@ -164,7 +164,9 @@ neotree.setup({
         --".null-ls_*",
       },
     },
-    follow_current_file = false, -- This will find and focus the file in the active buffer every
+    follow_current_file = {
+      enabled = false,
+    }, -- This will find and focus the file in the active buffer every
     -- time the current file is changed while the tree is open.
     group_empty_dirs = false, -- when true, empty folders will be grouped together
     hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
@@ -200,7 +202,9 @@ neotree.setup({
     }
   },
   buffers = {
-    follow_current_file = true, -- This will find and focus the file in the active buffer every
+    follow_current_file = {
+      enabled = true,
+    }, -- This will find and focus the file in the active buffer every
     -- time the current file is changed while the tree is open.
     group_empty_dirs = true, -- when true, empty folders will be grouped together
     show_unloaded = true,

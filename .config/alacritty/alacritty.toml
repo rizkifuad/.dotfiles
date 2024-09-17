@@ -1,0 +1,15 @@
+import = ["~/.config/alacritty/colors.toml"]
+[window]
+padding.x = 0
+padding.y = 0
+
+dynamic_padding = true
+
+decorations = "None"
+
+[font]
+size = 16.0
+normal.family = "agave Nerd Font"
+offset.x = 0
+offset.y = 16
+glyph_offset.y =  8

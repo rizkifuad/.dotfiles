@@ -7,7 +7,7 @@ require "user.plugins.fidget"
 require "user.plugins.null-ls"
 
 
-lspconfig.tsserver.setup {
+--[[ lspconfig.tsserver.setup {
   on_attach = require("user.lsp.handlers").on_attach,
   capabilities = require("user.lsp.handlers").capabilities,
   init_options = {
@@ -25,9 +25,9 @@ lspconfig.tsserver.setup {
     "typescriptreact",
     "vue"
   },
-}
+} ]]
 
-local servers = { "jsonls", "cssls", "gopls", "html", "rust_analyzer", "astro" }
+local servers = { "jsonls", "cssls", "gopls", "html", "rust_analyzer", "astro", "ts_ls" }
 
 require("mason").setup()
 

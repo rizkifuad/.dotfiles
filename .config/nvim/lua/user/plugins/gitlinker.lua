@@ -13,7 +13,7 @@ gitlinker.setup {
     add_current_line_on_normal_mode = true,
     action_callback = function(url)
       -- default open in chrome
-      local command = {command = 'open', args = {url, '-a', '/Applications/Finicky.app'}}
+      local command = {command = 'open', args = {url, '-a', '/Applications/Google Chrome.app'}}
       if url:find('kata-ai', 1, true) then
         command = {command = 'open', args = {url}}
       end

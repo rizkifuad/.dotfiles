@@ -225,6 +225,7 @@ require("lazy").setup({
 
   {
     "lewis6991/gitsigns.nvim",
+    tag = "v0.8.1",
     lazy = true,
     event = "BufRead",
     config = function()
@@ -265,7 +266,7 @@ require("lazy").setup({
 
   {
     "Exafunction/codeium.vim",
-    event = "BufRead",
+    event = "BufEnter",
     lazy = true
   },
 
@@ -286,19 +287,34 @@ require("lazy").setup({
       "nvim-lua/plenary.nvim",
     },
   },
-
   {
-    "rest-nvim/rest.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require "user.plugins.rest"
-    end
+    "vhyrro/luarocks.nvim",
+    priority = 1000,
+    config = true,
+    opts = {
+      rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }
+    }
   },
   "folke/zen-mode.nvim",
+   "eandrju/cellular-automaton.nvim",
   opts = {
     -- your configuration comes here
     -- or leave it empty to use the default settings
     -- refer to the configuration section below
-  }
+
+  },
+
+  {
+    'akinsho/flutter-tools.nvim',
+    lazy = false,
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+        'stevearc/dressing.nvim', -- optional for vim.ui.select
+    },
+    config = function()
+        require("user.lsp.langs.flutter-tools").setup()
+    end,
+}
+
 
 })

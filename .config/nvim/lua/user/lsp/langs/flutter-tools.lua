@@ -7,33 +7,20 @@ M.setup = function(opts)
   end
 
   vim.cmd [[
-  autocmd BufWritePre *.dart lua vim.lsp.buf.formatting_sync(nil, 1000)
+  " autocmd BufWritePre *.dart lua vim.lsp.buf.formatting_sync(nil, 1000)
   autocmd BufWritePost *.dart silent !tmux send-keys -t1 r
   ]]
 
-  -- alternatively you can override the default configs
-  flutter_tools.setup {
+  require("flutter-tools").setup {
     closing_tags = {
-      -- highlight = "ErrorMsg", -- highlight for the closing tag
-      -- prefix = ">", -- character to use for close tag e.g. > Widget
+      highlight = "ErrorMsg", -- highlight for the closing tag
+      prefix = ">", -- character to use for close tag e.g. > Widget
+      priority = 10, -- priority of virtual text in current line
+      -- consider to configure this when there is a possibility of multiple virtual text items in one line
+      -- see `priority` option in |:help nvim_buf_set_extmark| for more info
       enabled = true -- set to false to disable
     },
-    outline = {
-      open_cmd = "setlocal nosplitright | 40vnew", -- command to use to open the outline buffer
-      auto_open = false -- if true this will open the outline automatically when it is first populated
-    },
-    lsp = {
-      color = { -- show the derived colours for dart variables
-        enabled = true, -- whether or not to highlight color variables at all, only supported on flutter >= 2.10
-        background = false, -- highlight the background
-        foreground = false, -- highlight the foreground
-        virtual_text = true, -- show the highlight using virtual text
-        virtual_text_str = "■", -- the virtual text character to highlight
-      },
-      on_attach = opts.on_attach,
-      capabilities = opts.capabilities -- e.g. lsp_status capabilities
-    }
-  }
+  } -- use defaults
 end
 
 return M
