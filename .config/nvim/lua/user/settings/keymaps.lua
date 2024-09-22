@@ -66,11 +66,11 @@ keymap('n', '<leader>z', '<cmd>Neotree float<cr>', opts)
 
 -- Telescope --
 keymap('n', '<leader>r', '<cmd>Telescope oldfiles<cr>', opts)
-keymap('n', '<C-p>', '<cmd>Telescope find_files previewer=false<cr>', opts)
+keymap('n', '<C-p>', '<cmd>Telescope find_files previewer=false hidden=true<cr>', opts)
 keymap('n', '\\', '<cmd>Telescope buffers<cr>', opts)
 keymap('n', '<leader>p', "<cmd>lua require'telescope'.extensions.project.project{}<cr>", opts)
 keymap('n', '<space><space>', "<cmd>Telescope commander<cr>", opts)
-keymap('n', '<leader>f', '<cmd>Telescope live_grep<cr>', opts)
+keymap('n', '<leader>f', '<cmd>Telescope live_grep hidden=true<cr>', opts)
 
 
 -- Gitting

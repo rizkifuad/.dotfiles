@@ -69,7 +69,7 @@ if status is-interactive
   abbr -a d "git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
   # ssh term
-  # abbr -a ssh "TERM=screen-256color ssh"
+  abbr -a ssh "TERM=screen-256color ssh"
 
   # Bun
   set -Ux BUN_INSTALL "/Users/rizki/.bun"
