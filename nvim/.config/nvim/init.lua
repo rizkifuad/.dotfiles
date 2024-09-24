@@ -204,14 +204,14 @@ require("lazy").setup({
     end
   },
 
-  --[[ {
+  {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufRead",
     lazy = true,
     config = function()
       require "user.plugins.indentline"
     end
-  }, ]]
+  },
 
   {
     "norcalli/nvim-colorizer.lua",
