@@ -1,6 +1,6 @@
-.config/fish/completions
-.config/fish/conf.d
-.config/fish/themes
-.config/fish/functions
-.config/fish/fish_variables
+fish/.config/fish/completions
+fish/.config/fish/conf.d
+fish/.config/fish/themes
+fish/.config/fish/functions
+fish/.config/fish/fish_variables
 .DS_Store
