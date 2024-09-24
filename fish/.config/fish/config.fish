@@ -1,4 +1,5 @@
 if status is-interactive
+  set -U fish_greeting ""
   # Commands to run in interactive sessions can go here
   # Setting default env
   set -x LANG en_US.UTF-8
