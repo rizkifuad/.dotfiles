@@ -27,7 +27,7 @@ require "user.plugins.null-ls"
   },
 } ]]
 
-local servers = { "jsonls", "cssls", "gopls", "html", "rust_analyzer", "astro", "ts_ls" }
+local servers = { "jsonls", "cssls", "gopls", "html", "rust_analyzer", "astro", "ts_ls"}
 
 require("mason").setup()
 

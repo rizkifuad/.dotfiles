@@ -68,3 +68,11 @@ indent_blankline.setup({
 	--   "IndentBlanklineIndent3",
 	-- },
 })
+
+local hooks = require "ibl.hooks"
+hooks.register(hooks.type.ACTIVE, function(bufnr)
+    return vim.tbl_contains(
+        { "dart" },
+        vim.api.nvim_get_option_value("filetype", { buf = bufnr })
+    )
+end)
