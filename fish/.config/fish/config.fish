@@ -1,4 +1,14 @@
 if status is-interactive
+    # Start X at login
+  if status is-login
+      if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
+        $HOME/.local/bin/game stream
+      end
+
+      if test -z "$DISPLAY" -a "$XDG_VTNR" = 2
+        exec startx -- -keeptty
+      end
+  end
   set -U fish_greeting ""
   # Commands to run in interactive sessions can go here
   # Setting default env
@@ -15,9 +25,9 @@ if status is-interactive
   # set -x GOROOT $HOME/go
   set -x GOBIN $GOPATH/bin
 
-  set -x ANDROID_SDK_ROOT $HOME/Library/Android
-  set -x ANDROID_HOME $HOME/Library/Android/sdk
-  set -x JAVA_HOME /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+  set -x ANDROID_SDK_ROOT $HOME/Android
+  set -x ANDROID_HOME $HOME/Android/Sdk
+  # set -x JAVA_HOME /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
   # set -x JAVA_HOME /opt/homebrew/opt/openjdk
 
   # Setting PATH
