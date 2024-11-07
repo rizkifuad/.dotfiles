@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+main() {
+	case $1 in
+    "on")
+        # make CapsLock behave like Ctrl:
+        setxkbmap -option ctrl:nocaps
+
+        # make short-pressed Ctrl behave like Escape:
+        xcape -e 'Control_L=Escape'
+
+        setxkbmap -option altwin:swap_alt_win
+      ;;
+		"off")
+        setxkbmap -option
+			;;
+		""|*)
+			echo -e "USAGE:\t./$(basename $0) <on|off>"
+			;;
+	esac
+}
+main "$@"

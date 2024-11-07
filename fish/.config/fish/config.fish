@@ -2,11 +2,12 @@ if status is-interactive
     # Start X at login
   if status is-login
       if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-        $HOME/.local/bin/game stream
+        startx -- -keeptty
+        # startplasma-wayland
       end
 
       if test -z "$DISPLAY" -a "$XDG_VTNR" = 2
-        exec startx -- -keeptty
+        # $HOME/.local/bin/game stream
       end
   end
   set -U fish_greeting ""

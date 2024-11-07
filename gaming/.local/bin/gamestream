@@ -146,12 +146,12 @@ if [ -z "$STEAMCMD" ] ; then
 fi
 
 if [ -z "$GAMESCOPECMD" ] ; then
-    RESOLUTION="-W 1280 -H 800"
+    # RESOLUTION="-W 1280 -H 800"
+    # RESOLUTION="-W 1920 -H 1200"
     GAMESCOPECMD="/usr/bin/gamescope \
       $CURSOR \
       -f \
       -e \
-      $RESOLUTION \
       --xwayland-count 4 \
       --default-touch-mode 4 \
       -O HDMI-A-1 \

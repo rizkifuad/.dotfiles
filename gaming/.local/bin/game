@@ -22,6 +22,5 @@ main() {
 			echo -e "USAGE:\t./$(basename $0) <on|off>"
 			;;
 	esac
-	# start_etc
 }
 main "$@"
