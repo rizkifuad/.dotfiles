@@ -8,7 +8,9 @@ main() {
         # make short-pressed Ctrl behave like Escape:
         xcape -e 'Control_L=Escape'
 
-        setxkbmap -option altwin:swap_alt_win
+        xset r rate 200 25
+
+        # setxkbmap -option altwin:swap_alt_win
       ;;
 		"off")
         setxkbmap -option

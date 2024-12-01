@@ -5,15 +5,18 @@ stop_process() {
 
 main() {
 	case $1 in
-    "stream")
-      $HOME/.local/bin/gamestream
+    "streamdeck")
+      $HOME/.local/bin/gamestream deck
+      ;;
+    "streamphone")
+      $HOME/.local/bin/gamemode phone
       ;;
 		"on")
-      $HOME/.local/bin/gamemode
+      $HOME/.local/bin/gamestream monitor
 			;;
 		"off")
 			set -a procs
-			procs=("gamescope" "sunshine" "steam" "mangoapp")
+			procs=("gamescope" "steam" "mangoapp")
 			for p in "${procs[@]}"; do
 				stop_process $p
 			done

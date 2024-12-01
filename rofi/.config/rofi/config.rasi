@@ -19,7 +19,7 @@ configuration{
     me-accept-entry:			"MousePrimary";
     kb-mode-previous: "Control+h";
     kb-mode-next: "Control+l";
-    kb-remove-char-back: "";
+    kb-remove-char-back: "BackSpace";
     kb-mode-complete: "";
 }
 
