@@ -52,6 +52,16 @@ function _G.json_to_env()
   vim.cmd("set nopaste")
 end
 
+function _G.env_to_yaml()
+  vim.cmd("set paste")
+  vim.cmd("silent %s/\"//ge")
+  vim.cmd("silent %s/^$\\n//ge")
+  vim.cmd("silent g/^#/d")
+  vim.cmd("silent %s/^/- name: ")
+  vim.cmd("silent %s/=\\(.*\\)/\r  value: \"\\1\"")
+  vim.cmd("set nopaste")
+end
+
 commander.add({
   {
     desc = "Search inside current buffer",
@@ -76,6 +86,10 @@ commander.add({
   {
     desc = "Env To JSON",
     cmd = "<CMD>lua env_to_json()<CR>",
+  },
+  {
+    desc = "Env To YAML",
+    cmd = "<CMD>lua env_to_yaml()<CR>",
   },
   {
     desc = "JSON To Env",

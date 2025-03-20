@@ -133,6 +133,11 @@ local function lsp_keymaps(client, bufnr)
     buf_set_keymap('n', '<space>f', "<cmd>silent !swift-format % -i<CR>", opts)
   end
 
+
+  if vim.bo.filetype == "blade" then
+    buf_set_keymap('n', '<space>f', "<cmd>Format<CR>", opts)
+  end
+
   if vim.bo.filetype == "vue" then
     buf_set_keymap('n', '<space>f', "<cmd>silent norm magg=G'a<CR>", opts)
   end

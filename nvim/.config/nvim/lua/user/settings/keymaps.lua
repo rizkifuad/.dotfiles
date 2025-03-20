@@ -110,7 +110,7 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 --Term--
-keymap("t", "<Esc>", "<C-\\><C-n>", opts)
+-- keymap("t", "<Esc>", "<C-\\><C-n>", opts)
 -- keymap("n", "<C-t>", ":tabnew<cr>:term<cr>a", opts)
 
 -- Debugging --
@@ -136,3 +136,14 @@ vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { 
 -- Utilities --
 keymap("n", "<space>m", "<cmd>Mason<cr>", opts)
 keymap("n", "<space>l", "<cmd>Lazy<cr>", opts)
+
+
+vim.cmd([[
+function! OpenDefinition()
+  :call WinMove("l")
+  :norm gd
+endfunction
+]])
+
+
+keymap('n', 'gl', ':call OpenDefinition()<cr>', { silent = true })

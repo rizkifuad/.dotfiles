@@ -42,34 +42,11 @@ require("lazy").setup({
   },
 
   {
-    "folke/tokyonight.nvim",
-    priority = 1000,
-    lazy = false,
-    config = function()
-      -- require("catppuccin").setup {
-      -- integrations = {
-      -- native_lsp = {
-      -- enabled = true,
-      -- underlines = {
-      -- errors = { "undercurl" },
-      -- hints = { "undercurl" },
-      -- warnings = { "undercurl" },
-      -- information = { "undercurl" },
-      -- },
-      -- },
-      -- }
-      -- }
-      -- vim.cmd.colorscheme "tokyonight"
-    end
-  },
-
-  {
     "akinsho/bufferline.nvim",
     config = function()
       require("user.plugins.bufferline")
     end
   },
-
 
   {
     "SmiteshP/nvim-navic",
@@ -314,7 +291,48 @@ require("lazy").setup({
     config = function()
         require("user.lsp.langs.flutter-tools").setup()
     end,
-}
+  },
+  {
+    "LunarVim/bigfile.nvim",
+    config = function()
+      require("bigfile").setup {
+        filesize = 2, -- size of the file in MiB, the plugin round file sizes to the closest MiB
+        pattern = { "*" }, -- autocmd pattern or function see <### Overriding the detection of big files>
+        features = { -- features to disable
+          "indent_blankline",
+          "illuminate",
+          "lsp",
+          "treesitter",
+          "syntax",
+          "matchparen",
+          "vimopts",
+          "filetype",
+        },
+      }
+    end
+  },
+  {
+    'stevearc/conform.nvim',
+    opts = {},
+    config= function()
+      require("conform").setup({
+          formatters_by_ft = {
+              blade = { "blade-formatter" }
+          },
+      })
+      vim.api.nvim_create_user_command("Format", function(args)
+        local range = nil
+        if args.count ~= -1 then
+          local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+          range = {
+            start = { args.line1, 0 },
+            ["end"] = { args.line2, end_line:len() },
+          }
+        end
+        require("conform").format({ async = true, lsp_format = "fallback", range = range })
+      end, { range = true })
+    end
+  }
 
 
 })

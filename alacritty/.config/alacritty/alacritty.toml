@@ -3,7 +3,7 @@ import = ["~/.config/alacritty/colors.toml"]
 padding.x = 0
 padding.y = 0
 
-dynamic_padding = true
+dynamic_padding = false
 
 decorations = "None"
 
@@ -13,3 +13,10 @@ normal.family = "agave Nerd Font"
 offset.x = 0
 offset.y = 16
 glyph_offset.y =  8
+
+#[font]
+#size = 13.0
+#normal.family = "MartianMono Nerd Font"
+#offset.x = 0
+#offset.y = 16
+#glyph_offset.y =  8

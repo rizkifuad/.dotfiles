@@ -1,0 +1,6 @@
+macos-titlebar-style = hidden
+theme = catppuccin-macchiato
+font-family = "agave Nerd Font"
+font-size = 16
+adjust-cell-height = 50%
+font-thicken = true

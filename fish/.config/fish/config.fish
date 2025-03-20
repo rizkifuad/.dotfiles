@@ -72,6 +72,10 @@ if status is-interactive
   # ssh term
   abbr -a ssh "TERM=screen-256color ssh"
 
+  abbr -a k "kubectl --insecure-skip-tls-verify"
+
+  alias bunx="bun x"
+
   # Bun
   set -Ux BUN_INSTALL "/Users/rizki/.bun"
   set -px --path PATH "/Users/rizki/.bun/bin"
@@ -79,3 +83,7 @@ if status is-interactive
 end
 
 set -x N_PREFIX "$HOME/.n"; contains "$N_PREFIX/bin" $PATH; or set -a PATH "$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init.fish 2>/dev/null || :

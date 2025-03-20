@@ -67,3 +67,8 @@ comment.setup {
 
   post_hook = nil,
 }
+
+
+local ft = require('Comment.ft')
+ft({'yml'}, '#%s')
+
