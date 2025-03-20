@@ -1,0 +1,37 @@
+#!/bin/bash
+set -e
+
+die() { echo >&2 "!! $*"; exit 1; }
+
+session_file="/tmp/session.$USER"
+if ! test -f $session_file; then
+  echo '' > "$session_file"
+fi
+session=$(cat "$session_file")
+echo "Starting Session: $session" >> ~/a.log
+
+sleep 2
+
+case "$session" in
+  monitor)
+    $HOME/.local/bin/game monitor
+  ;;
+  streamdeck)
+    $HOME/.local/bin/game deck
+  ;;
+  streamphone)
+    $HOME/.local/bin/game phone
+  ;;
+  plasma)
+    systemctl --user start sunshine
+    startx -- -keeptty
+  ;;
+  tty)
+    systemctl --user start sunshine
+    echo "Entering raw tty session"
+  ;;
+  *)
+    systemctl --user start sunshine
+    startx -- -keeptty
+  ;;
+esac

@@ -11,12 +11,16 @@ configuration{
     hide-scrollbar: true;
     display-drun: "   Apps ";
     display-run: "   Run ";
-    display-window: " 﩯  window";
+    display-window: "   window";
     display-Network: " 󰤨  Network";
     sidebar-mode: true;
     hover-select:				true;
-	me-select-entry:			"";
-	me-accept-entry:			"MousePrimary";
+    me-select-entry:			"";
+    me-accept-entry:			"MousePrimary";
+    kb-mode-previous: "Control+h";
+    kb-mode-next: "Control+l";
+    kb-remove-char-back: "BackSpace";
+    kb-mode-complete: "";
 }
 
 /*****----- Global Properties -----*****/

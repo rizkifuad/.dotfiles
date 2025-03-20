@@ -1,0 +1,54 @@
+#!/bin/bash
+set -e
+
+die() { echo >&2 "!! $*"; exit 1; }
+
+session="${1:monitor}"
+session_file="/tmp/session.$USER"
+echo "Change session: $session" >> ~/a.log
+if ! test -f $session_file; then
+  echo '' > "$session_file"
+fi
+
+saved_session=$(cat "$session_file")
+
+if [ "$saved_session" == "$session" ]; then
+  exit 0
+fi
+
+stop_process() {
+	sudo killall $1 2&> /dev/null || echo "$1 not running"
+}
+
+steam -shutdown
+
+
+case "$session" in
+  monitor)
+    echo $session > "$session_file"
+  ;;
+  streamdeck)
+    echo $session > "$session_file"
+  ;;
+  streamphone)
+    echo $session > "$session_file"
+  ;;
+  plasma)
+    echo $session > "$session_file"
+  ;;
+  off)
+    echo 'tty' > "$session_file"
+    set -a procs
+    procs=("gamescope" "steam" "mangoapp")
+    for p in "${procs[@]}"; do
+      stop_process $p
+    done
+  ;;
+  *)
+    echo "Unsupported session: $session"
+    echo >&2 "!! Unrecognized session '$session'"
+    exit 1
+  ;;
+esac
+
+pkill -KILL -u "$USER"

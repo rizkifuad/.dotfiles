@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+stop_process() {
+	sudo killall $1 2&> /dev/null || echo "$1 not running"
+}
+
+main() {
+	case $1 in
+    "streamdeck")
+      $HOME/.local/bin/gamestream deck
+      ;;
+    "streamphone")
+      $HOME/.local/bin/gamemode phone
+      ;;
+		"on")
+      $HOME/.local/bin/gamestream monitor
+			;;
+		"off")
+			set -a procs
+			procs=("gamescope" "steam" "mangoapp")
+			for p in "${procs[@]}"; do
+				stop_process $p
+			done
+			;;
+		""|*)
+			echo -e "USAGE:\t./$(basename $0) <on|off>"
+			;;
+	esac
+}
+main "$@"
