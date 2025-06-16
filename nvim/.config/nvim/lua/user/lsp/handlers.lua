@@ -1,6 +1,6 @@
 local M = {}
 
-local function jump(bufnr, action, callback, fallback)
+--[[ local function jump(bufnr, action, callback, fallback)
   local params = vim.lsp.util.make_position_params()
   vim.lsp.buf_request(bufnr, action, params, function(err, result)
     if err then
@@ -24,7 +24,7 @@ local function jump(bufnr, action, callback, fallback)
       callback()
     end
   end)
-end
+end ]]
 
 -- TODO: backfill this to template
 M.setup = function()

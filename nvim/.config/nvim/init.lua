@@ -162,7 +162,7 @@ require("lazy").setup({
       'jay-babu/mason-nvim-dap.nvim',
       { "j-hui/fidget.nvim", tag = "legacy" },
       "folke/neodev.nvim",
-      "jose-elias-alvarez/null-ls.nvim",
+      -- "jose-elias-alvarez/null-ls.nvim",
     },
     config = function()
       require "user.lsp"
@@ -242,9 +242,16 @@ require("lazy").setup({
   },
 
   {
-    "Exafunction/codeium.vim",
+    "Exafunction/windsurf.vim",
     event = "BufEnter",
-    lazy = true
+    --[[ dependencies = {
+        "nvim-lua/plenary.nvim",
+        "hrsh7th/nvim-cmp",
+    },
+    lazy = true,
+    config = function()
+      require "users.plugins.codeium".setup()
+    end ]]
   },
 
   {

@@ -4,43 +4,12 @@ if not status_ok then
 end
 
 require "user.plugins.fidget"
-require "user.plugins.null-ls"
+local servers = { "jsonls", "cssls", "gopls", "html", "rust_analyzer", "astro", "ts_ls", "vuels", "intelephense", "tailwindcss"}
 
-
---[[ lspconfig.tsserver.setup {
-  on_attach = require("user.lsp.handlers").on_attach,
-  capabilities = require("user.lsp.handlers").capabilities,
-  init_options = {
-    plugins = {
-      {
-        name = "@vue/typescript-plugin",
-        location = "/Users/rizki/.n/lib/node_modules/@vue/typescript-plugin",
-        languages = { "vue" },
-      },
-    },
-  },
-  filetypes = {
-    "javascript",
-    "typescript",
-    "typescriptreact",
-    "vue"
-  },
-} ]]
-
-local servers = { "jsonls", "cssls", "gopls", "html", "rust_analyzer", "astro", "ts_ls"}
-
-require("mason").setup()
-
-local mason_lspconfig = require 'mason-lspconfig'
 
 require("user.lsp.handlers").setup()
 
-mason_lspconfig.setup {
-  ensure_installed = servers,
-}
-
-mason_lspconfig.setup_handlers {
-  function(server_name)
+for _, server_name in pairs(servers) do
     local opts = {
       on_attach = require("user.lsp.handlers").on_attach,
       capabilities = require("user.lsp.handlers").capabilities,
@@ -52,8 +21,14 @@ mason_lspconfig.setup_handlers {
     end
 
     lspconfig[server_name].setup(opts)
-  end,
-}
+end
+
+require("mason").setup()
+
+--[[ local mason_lspconfig = require 'mason-lspconfig'
+mason_lspconfig.setup {
+  ensure_installed = servers,
+} ]]
 
 
 local mason_nvim_dap_ok, mason_nvim_dap = pcall(require, "mason-nvim-dap")
