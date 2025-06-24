@@ -2,15 +2,10 @@
 main() {
 	case $1 in
     "on")
-        # make CapsLock behave like Ctrl:
-        setxkbmap -option ctrl:nocaps
-
-        # make short-pressed Ctrl behave like Escape:
-        xcape -e 'Control_L=Escape'
-
         xset r rate 200 25
-
-        # setxkbmap -option altwin:swap_alt_win
+        #setxkbmap -option ctrl:nocaps
+        #xcape -e 'Control_L=Escape'
+        #setxkbmap -option altwin:swap_alt_win
       ;;
 		"off")
         setxkbmap -option

@@ -46,7 +46,6 @@ if status is-interactive
   set PATH $ANDROID_HOME/platform-tools $PATH
   set PATH $ANDROID_HOME/cmdline-tools/latest/bin $PATH
   # set PATH /opt/homebrew/opt/mysql-client@5.7/bin $PATH
-  set PATH $HOME/.gvm/bin $PATH
   set PATH $HOME/.local/share/neovim/bin $PATH
 
   set PATH $HOME/.gobrew/current/bin $PATH
