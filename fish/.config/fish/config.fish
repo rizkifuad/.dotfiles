@@ -38,7 +38,7 @@ if status is-interactive
   # set PATH /opt/homebrew/bin $PATH
   set PATH $HOME/.n/bin $PATH
   set PATH $GOBIN $PATH
-  set PATH $HOME/build/flutter/bin $PATH
+  set PATH $HOME/.build/flutter/bin $PATH
   set PATH $HOME/.cargo/bin $PATH
   set PATH $HOME/.pub-cache/bin $PATH
   set PATH $JAVA_HOME/bin $PATH

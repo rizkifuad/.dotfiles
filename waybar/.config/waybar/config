@@ -1,67 +1,155 @@
-/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-
-// ### DEFAULT Top -Laptop ### //
 {
-"include": "~/.config/waybar/modules",
-"layer": "top",
-//"mode": "dock",
-"exclusive": true,
-"passthrough": false,
-"position": "top",
-"spacing": 3,
-"fixed-center": true,
-"ipc": true,
-"width": 1850,
-"margin-top": 3,
-"margin-left": 8,
-"margin-right": 8,
-
-"modules-left": [
-	"hyprland/workspaces#4",
-	"custom/separator#dot-line",
-	"cpu",
-	"custom/separator#dot-line", 
-	"temperature",
-	"custom/separator#dot-line", 
-	"memory",
-	"custom/separator#dot-line",
-	"custom/weather",
-	"custom/separator#blank_3",
-	"custom/cava_mviz",
-	],
-
-"modules-center": [
-	"custom/menu",
-	"custom/separator#dot-line",
-	"idle_inhibitor", 
-	"custom/separator#dot-line",
-	"clock",
-	"custom/separator#dot-line",
-	"custom/light_dark",
-	"custom/separator#dot-line",	
-	"custom/lock",
-	], 
-
-"modules-right": [
-	"network#speed",
-	"custom/separator#dot-line",
-	"custom/swaync",
-	"tray",
-	"custom/separator#dot-line",
-	"bluetooth",
-	"custom/separator#dot-line", 
-	"battery",
-	"custom/separator#dot-line", 
-	"backlight",
-	"custom/separator#dot-line",
-	"pulseaudio",
-	"custom/separator#dot-line",
-	"pulseaudio#microphone",
-	"custom/separator#dot-line",
-	"keyboard-state",
-	"custom/separator#dot-line",
-	"custom/keyboard",
-	"custom/separator#dot-line",
-	"custom/power",
-	],
+  "layer": "top",
+  "position": "top",
+  "height": 45,
+  "spacing": 0,
+  "modules-left": [
+    "niri/workspaces",
+    "niri/window",
+  ],
+  "modules-right": [
+    "tray",
+    "network",
+    "battery",
+    "bluetooth",
+    "pulseaudio",
+    "backlight",
+    "cpu",
+    "memory",
+    "clock",
+    "custom/power",
+  ],
+  "niri/workspaces": {
+    "disable-scroll": false,
+    "all-outputs": false,
+    "format": "{icon}",
+    "on-click": "activate",
+    "persistent-workspaces": {
+      "*": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    },
+    "format-icons": {
+      "1": "",
+      "2": "",
+      "3": "󰊴",
+      "4": "",
+      "5": "",
+    }
+  },
+  "niri/window": {
+    "format": "{title}",
+    "icon": true,
+    "rewrite": {
+      "(.*) - Thorium": "Thorium",
+      "(.*) tmux (.*)": "Terminal"
+    }
+  },
+  "custom/power": {
+    "format": "  ",
+    "on-click": "systemctl poweroff",
+    "tooltip": true,
+    "tooltip-format": "关机"
+  },
+  "network": {
+    "format-wifi": " 󰤨  {essid} ",
+    "format-ethernet": "  Wired ",
+    "tooltip-format": "<span color='#FF1493'> 󰅧 </span>{bandwidthUpBytes}  <span color='#00BFFF'> 󰅢 </span>{bandwidthDownBytes}",
+    "format-linked": " 󱘖  {ifname} (No IP) ",
+    "format-disconnected": "   Disconnected ",
+    "format-alt": " 󰤨  {signalStrength}% ",
+    "interval": 1
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": " {icon} {capacity}% ",
+    "format-charging": " 󱐋{capacity}%",
+    "interval": 1,
+    "format-icons": [
+      "󰂎",
+      "󰁼",
+      "󰁿",
+      "󰂁",
+      "󰁹"
+    ],
+    "tooltip": true
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}% ",
+    "format-muted": " 󰖁 0% ",
+    "format-icons": {
+      "headphone": "  ",
+      "hands-free": "  ",
+      "headset": "  ",
+      "phone": "  ",
+      "portable": "  ",
+      "car": "  ",
+      "default": [
+        "  ",
+        "  ",
+        "  "
+      ]
+    },
+    "on-click-right": "pavucontrol -t 3",
+    "on-click": "pactl -- set-sink-mute 0 toggle",
+    "tooltip": true,
+    "tooltip-format": "Volume: {volume}%"
+  },
+  "custom/temperature": {
+    "exec": "sensors | awk '/^Package id 0:/ {print int($4)}'",
+    "format": " {}°C ",
+    "interval": 5,
+    "tooltip": true,
+    "tooltip-format": "CPU Temp: {}°C"
+  },
+  "memory": {
+    "format": "   <span color=\"#FFFFFF\">{used:0.1f}G/{total:0.1f}G</span> ",
+    "tooltip": true,
+    "tooltip-format": "Memory: {used:0.2f}G/{total:0.2f}G"
+  },
+  "cpu": {
+    "format": "   <span color=\"#FFFFFF\">{usage}%</span> ",
+    "tooltip": true
+  },
+  "clock": {
+    "interval": 15,
+    "timezone": "Asia/Jakarta",
+    "format": " {:%a, %B %d %H:%M} ",
+    "tooltip": true,
+    "tooltip-format": "{:L%Y 年 %m 月 %d 日, %A}"
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 16
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon}{percent}% ",
+    "tooltip": true,
+    "tooltip-format": "当前屏幕亮度: {percent}%",
+    "format-icons": [
+      " 󰃞 ",
+      " 󰃝 ",
+      " 󰃟 ",
+      " 󰃠 "
+    ]
+  },
+  "bluetooth": {
+    "format": "  {status} ",
+    "format-connected": "  {device_alias} ",
+    "format-connected-battery": "  {device_alias} - {device_battery_percentage}% ",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+  }
 }
