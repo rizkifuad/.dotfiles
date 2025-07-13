@@ -4,7 +4,7 @@ if status is-interactive
       if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
         # startx -- -keeptty
         # $HOME/.local/bin/steamos-session-select
-        $HOME/.local/bin/session-start
+        # $HOME/.local/bin/session-start
         # $HOME/.local/bin/gamemode
       end
 

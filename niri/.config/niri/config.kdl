@@ -72,6 +72,11 @@ input {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
+
+output "DP-2" {
+  scale 1.25
+}
+
 /-output "eDP-1" {
     // Uncomment this line to disable this output.
     // off
@@ -268,7 +273,8 @@ spawn-at-startup "foot" "--server"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 spawn-at-startup "/home/rizki/.config/niri/scripts/walls.sh"
-// spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+spawn-at-startup "footclient"
+spawn-at-startup "thorium-browser"
 
 
 
@@ -318,7 +324,20 @@ window-rule {
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match title="^Picture in picture$"
     open-floating true
+
+    default-floating-position x=0 y=0 relative-to="bottom-right"
+}
+
+window-rule {
+    // This app-id regular expression will work for both:
+    // - host Firefox (app-id is "firefox")
+    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
+    match title="^Volume Control$"
+    match app-id=".*pop-up.*"
+    open-floating true
+
 }
 
 // Example: block out two password managers from screen capture.
@@ -350,6 +369,7 @@ workspace "work"
 workspace "chat"
 workspace "game"
 
+
 binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
     // in the end. To find an XKB name for a particular key, you may use a program
@@ -368,7 +388,11 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "footclient"; }
     Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Mod+Shift+O hotkey-overlay-title="Choose an audio output: fuzzel-output" { spawn "~/.config/niri/scripts/fuzzel-output.sh"; }
+    Mod+Shift+W hotkey-overlay-title="Random wallpaper: rand-wallpaper" { spawn "~/.config/niri/scripts/walls.sh"; }
+    Mod+W hotkey-overlay-title="List windows: windows" { spawn "~/.config/niri/scripts/fuzzel-windows.sh"; }
+    Super+Alt+L hotkey-overlay-title="Lock the Screen: gtklock" { spawn "gtklock"; }
+    Super+Alt+S hotkey-overlay-title="Suspend system: suspend" { spawn "systemctl" "suspend"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -606,4 +630,8 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     // Mod+Shift+P { power-off-monitors; }
+}
+
+hotkey-overlay {
+  skip-at-startup
 }

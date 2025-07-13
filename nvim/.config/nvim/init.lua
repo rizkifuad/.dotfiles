@@ -330,7 +330,8 @@ require("lazy").setup({
     config= function()
       require("conform").setup({
           formatters_by_ft = {
-              blade = { "blade-formatter" }
+            blade = { "blade-formatter" },
+            rust = { "rustfmt", lsp_format = "fallback" },
           },
       })
       vim.api.nvim_create_user_command("Format", function(args)
@@ -345,7 +346,6 @@ require("lazy").setup({
         require("conform").format({ async = true, lsp_format = "fallback", range = range })
       end, { range = true })
     end
-  }
-
+  },
 
 })

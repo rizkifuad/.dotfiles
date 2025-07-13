@@ -28,25 +28,32 @@ end ]]
 
 -- TODO: backfill this to template
 M.setup = function()
-  local signs = {
-    { name = "DiagnosticSignError", text = " " },
-    { name = "DiagnosticSignWarn",  text = " " },
-    { name = "DiagnosticSignHint",  text = " " },
-    { name = "DiagnosticSignInfo",  text = " " },
-  }
 
   require("user.settings.lsp_themes")
-
-  for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-  end
 
   local config = {
     -- disable virtual text
     virtual_text = false,
     -- show signs
     signs = {
-      active = signs,
+      text = {
+        [vim.diagnostic.severity.ERROR] = " ",
+        [vim.diagnostic.severity.WARN] = " ",
+        [vim.diagnostic.severity.INFO] = " ",
+        [vim.diagnostic.severity.HINT] = "󰠠 ",
+      },
+      linehl = {
+        [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+        [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+        [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+        [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+      },
+      numhl = {
+        [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+        [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+        [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+        [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+      },
     },
     update_in_insert = true,
     underline = true,
@@ -132,6 +139,11 @@ local function lsp_keymaps(client, bufnr)
   if client.name == "sourcekit" then
     buf_set_keymap('n', '<space>f', "<cmd>silent !swift-format % -i<CR>", opts)
   end
+
+
+  --[[ if vim.bo.filetype == "rust" then
+    buf_set_keymap('n', '<space>f', "<cmd>silent !dx fmt -f %<CR>", opts)
+  end ]]
 
 
   if vim.bo.filetype == "blade" then
