@@ -30,6 +30,7 @@
 #window,
 #clock,
 #custom-power,
+#custom-pomobar,
 #custom-reboot,
 #bluetooth,
 #battery,
@@ -76,6 +77,9 @@
 }
 #cpu{
   color: #f38ba8;
+}
+#custom-pomobar{
+  color: #cdd6f4;
 }
 #network{
   color: #9ece6a

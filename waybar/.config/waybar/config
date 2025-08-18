@@ -9,11 +9,10 @@
   ],
   "modules-right": [
     "tray",
+    "custom/pomobar",
     "network",
-    "battery",
     "bluetooth",
     "pulseaudio",
-    "backlight",
     "cpu",
     "memory",
     "clock",
@@ -48,7 +47,9 @@
     "icon": true,
     "rewrite": {
       "(.*) - Thorium": "Thorium",
-      "(.*) tmux (.*)": "Terminal"
+      "(.*) tmux (.*)": "Terminal",
+      "(.*) Zen (.*)": "Zen Browser",
+      "(.*) - Google Chrome(.*)": "Google Chrome"
     }
   },
   "custom/power": {
@@ -151,5 +152,20 @@
     "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
     "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
-  }
+  },
+  "custom/pomobar": {
+    "format": "{icon}{text}",
+    "format-icons": {
+      "idle": " ▶️ ",
+      "paused": "💤 ",
+      "work": "💻 ",
+      "short_break": "☕ ",
+      "long_break": "🌿 ",
+    },
+    "interval": 1,
+    "exec": "/home/rizki/.local/bin/pomobar-cli status",
+    "on-click": "/home/rizki/.local/bin/pomobar-cli toggle",
+    "on-click-middle": "/home/rizki/.local/bin/pomobar-cli reset",
+    "return-type": "json",
+  },
 }

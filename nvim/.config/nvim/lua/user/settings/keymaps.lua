@@ -67,6 +67,7 @@ keymap('n', '<leader>z', '<cmd>Neotree float<cr>', opts)
 -- Telescope --
 keymap('n', '<leader>r', '<cmd>Telescope oldfiles<cr>', opts)
 keymap('n', '<C-p>', '<cmd>Telescope find_files previewer=false hidden=true<cr>', opts)
+keymap('n', '<leader>e', '<cmd>Telescope find_files previewer=false hidden=true<cr>', opts)
 keymap('n', '\\', '<cmd>Telescope buffers<cr>', opts)
 keymap('n', '<leader>p', "<cmd>lua require'telescope'.extensions.project.project{}<cr>", opts)
 keymap('n', '<space><space>', "<cmd>Telescope commander<cr>", opts)
@@ -124,6 +125,9 @@ keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
 keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
 keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 
+keymap("n", "gl", "$", opts)
+keymap("n", "gh", "^", opts)
+
 
 -- Codeium --
 vim.keymap.set('i', '<C-f>', function() return vim.fn['codeium#Accept']() end, { expr = true })
@@ -136,14 +140,3 @@ vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { 
 -- Utilities --
 keymap("n", "<space>m", "<cmd>Mason<cr>", opts)
 keymap("n", "<space>l", "<cmd>Lazy<cr>", opts)
-
-
-vim.cmd([[
-function! OpenDefinition()
-  :call WinMove("l")
-  :norm gd
-endfunction
-]])
-
-
-keymap('n', 'gl', ':call OpenDefinition()<cr>', { silent = true })

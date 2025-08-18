@@ -8,10 +8,12 @@ if status is-interactive
         # $HOME/.local/bin/gamemode
       end
 
-      if test -z "$DISPLAY" -a "$XDG_VTNR" = 2
+      if test "$XDG_VTNR" = 2
         # $HOME/.local/bin/game stream
+      # systemd-run --user --scope tmux new-session
       end
   end
+
   set -U fish_greeting ""
   # Commands to run in interactive sessions can go here
   # Setting default env
@@ -58,6 +60,10 @@ if status is-interactive
 
   # Tmux quick attach
   abbr -a tma tmux attach -t 
+
+  # Tmux quick start
+  abbr -a tm systemd-run --user --scope tmux new-session
+ 
 
   # exa for ls
   set -x EZA_ICON_SPACING 2

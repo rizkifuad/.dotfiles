@@ -1,0 +1,21 @@
+* {
+box-shadow: none;
+}
+
+window {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* hide "Password:" label */
+#input-label {
+  font-size: 0;
+}
+
+#input-field {
+}
+
+#window-box {
+margin-top: 54em;
+}

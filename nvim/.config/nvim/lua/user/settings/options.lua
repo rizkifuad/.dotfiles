@@ -33,6 +33,9 @@ local options = {
   wrap = false,                            -- display lines as one long line
   scrolloff = 8,                           -- is one of my fav
   sidescrolloff = 8,
+  foldmethod = "expr",
+  foldexpr = "v:lua.vim.lsp.foldexpr()",
+  foldlevel = 0
 }
 
 vim.opt.shortmess:append "c"

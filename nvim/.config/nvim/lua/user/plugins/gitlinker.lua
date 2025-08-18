@@ -14,7 +14,7 @@ gitlinker.setup {
     action_callback = function(url)
       -- default open in chrome
       -- local command = {command = 'open', args = {url, '-a', '/Applications/Google Chrome.app'}}
-      local command = {command = 'thorium-browser', args = {url}}
+      local command = {command = 'google-chrome-stable', args = {url}}
       if url:find('kata-ai', 1, true) then
         command = {command = 'open', args = {url}}
       end
