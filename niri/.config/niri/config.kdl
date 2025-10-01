@@ -110,6 +110,8 @@ output "DP-2" {
 
 environment {
     DISPLAY ":0"
+    /* GDK_DPI_SCALE "1"
+    GDK_SCALE "1" */
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -356,6 +358,8 @@ window-rule {
     match app-id=".*pop-up.*"
     match app-id="org.gnome.Nautilus"
     match title=".*Obsidian.*"
+    match title=".*scratchterminal.*"
+    match title="^wiremix$"
 
     open-floating true
 }
@@ -428,13 +432,15 @@ binds {
     Mod+E hotkey-overlay-title="Run a File manager: nautilus" { spawn "~/.config/niri/scripts/ndrop.sh"  "org.gnome.Nautilus" "nautilus"; }
     Mod+N hotkey-overlay-title="Run a note taking app: obisidan" { spawn "~/.config/niri/scripts/ndrop.sh"  "obsidian" "obsidian"; }
     Mod+D hotkey-overlay-title="Run a Docker: lazydocker" { spawn "~/.config/niri/scripts/ndrop.sh" "lazydocker" "footclient -T lazydocker lazydocker"; }
+    Mod+Slash hotkey-overlay-title="Run a scratch terminal: scratch" { spawn "~/.config/niri/scripts/ndrop.sh" "scratchterminal" "footclient -T scratchterminal nvim /home/rizki/scratchpad"; }
     Mod+Shift+O hotkey-overlay-title="Choose an audio output: fuzzel-output" { spawn "~/.config/niri/scripts/fuzzel-output.sh"; }
     Mod+Shift+W hotkey-overlay-title="Random wallpaper: rand-wallpaper" { spawn "~/.config/niri/scripts/walls.sh"; }
     Mod+W hotkey-overlay-title="List windows: windows" { spawn "~/.config/niri/scripts/fuzzel-windows.sh"; }
     Mod+G hotkey-overlay-title="Mouseless: wl-kbptr" { spawn "wl-kbptr"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: gtklock" { spawn "gtklock"; }
-    Super+Alt+S hotkey-overlay-title="Suspend system: suspend" { spawn "sh" "-c" "systemctl suspend && gtklock"; }
+    Super+Alt+S hotkey-overlay-title="Suspend system: suspend" { spawn "sh" "-c" "sudo systemctl suspend && gtklock"; }
     Mod+Shift+BracketLeft hotkey-overlay-title="Color picker: hyprpicker" { spawn "~/.config/niri/scripts/fuzzel-colorpicker.sh"; }
+    Mod+S hotkey-overlay-title="Volume control" { spawn "sh" "-c" "footclient -T wiremix wiremix -v output"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -450,8 +456,12 @@ binds {
     XF86AudioRaiseVolume allow-when-locked=true { spawn "~/.config/niri/scripts/volume.sh" "--inc"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "~/.config/niri/scripts/volume.sh" "--dec"; }
     XF86AudioMute        allow-when-locked=true { spawn "~/.config/niri/scripts/volume.sh" "--toggle"; }
-    Super+Equal          allow-when-locked=true { spawn "~/.config/niri/scripts/brightness.sh" "--inc"; }
-    Super+Minus          allow-when-locked=true { spawn "~/.config/niri/scripts/brightness.sh" "--dec"; }
+    XF86MonBrightnessUp  allow-when-locked=true { spawn "~/.config/niri/scripts/brightness.sh" "--inc"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "~/.config/niri/scripts/brightness.sh" "--dec"; }
+
+    Mod+Shift+Alt+Ctrl+G allow-when-locked=true { spawn "~/.config/niri/scripts/brightness.sh" "--set" "100"; }
+    Mod+Shift+Alt+Ctrl+B allow-when-locked=true { spawn "~/.config/niri/scripts/brightness.sh" "--set" "0"; }
+
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,

@@ -52,5 +52,6 @@ case "$1" in
     --get) get_backlight ;;
     --inc) inc_backlight ;;
     --dec) dec_backlight ;;
+    --set) set_backlight "$2" ;;
     *)     get_backlight ;;
 esac
