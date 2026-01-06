@@ -1,17 +1,21 @@
 #!/usr/bin/env bash
+get_focused_monitor_info() {
+    niri msg --json focused-output | jq -r '
+        "\(.model)"'
+}
+
 
 iDIR="$HOME/.config/mako/icons"
-MONITOR="1"   # change if you have multiple monitors (use: ddcutil detect)
+MONITOR="$(get_focused_monitor_info)"
 icon="$iDIR/brightness-icon.png"
-
-CACHE_FILE="/tmp/current_backlight_value"
+CACHE_FILE="/tmp/current_backlight_value_$MONITOR"
 
 # Get brightness (with cache)
 get_backlight() {
     if [[ -s "$CACHE_FILE" ]]; then
         LIGHT=$(cat "$CACHE_FILE")
     else
-        LIGHT=$(ddcutil getvcp --noverify --skip-ddc-checks --display $MONITOR 10 | grep "current value =" | awk '{print $9}' | tr -d ',')
+        LIGHT=$(ddcutil getvcp --noverify --skip-ddc-checks --model $MONITOR 10 | grep "current value =" | awk '{print $9}' | tr -d ',')
         echo "$LIGHT" > "$CACHE_FILE"
     fi
     echo "$LIGHT"
@@ -19,7 +23,7 @@ get_backlight() {
 
 set_backlight() {
     local value="$1"
-    ddcutil setvcp --noverify --skip-ddc-checks  --display $MONITOR 10 "$value" >/dev/null 2>&1
+    ddcutil setvcp --noverify --skip-ddc-checks  --model $MONITOR 10 "$value" >/dev/null 2>&1
     echo "$value" > "$CACHE_FILE"
 }
 
@@ -46,6 +50,7 @@ dec_backlight() {
     set_backlight "$new"
     notify_user
 }
+
 
 # Execute accordingly
 case "$1" in

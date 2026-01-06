@@ -34,6 +34,7 @@ if status is-interactive
   set -x ANDROID_HOME $HOME/Android/Sdk
   # set -x JAVA_HOME /Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
   # set -x JAVA_HOME /opt/homebrew/opt/openjdk
+  set -x JAVA_HOME /opt/android-studio/jbr
 
   # Setting PATH
   set PATH $HOME/.local/bin $PATH
@@ -53,6 +54,7 @@ if status is-interactive
   set PATH $HOME/.gobrew/current/bin $PATH
   set PATH $HOME/.gobrew/bin $PATH
   set PATH /Applications/WezTerm.app/Contents/MacOS $PATH
+
 
   # FZF command
   set -x FZF_DEFAULT_COMMAND "rg --files --hidden"
@@ -91,6 +93,8 @@ if status is-interactive
   abbr -a ssh "TERM=screen-256color ssh"
 
   abbr -a k "kubectl --insecure-skip-tls-verify"
+
+  abbr -a p "pnpm"
 
   alias bunx="bun x"
 

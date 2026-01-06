@@ -59,7 +59,7 @@ input {
     }
 
     // Uncomment this to make the mouse warp to the center of newly focused windows.
-    warp-mouse-to-focus
+    // warp-mouse-to-focus
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
@@ -73,8 +73,14 @@ input {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
 
-output "DP-2" {
+output "DP-1" {
+  focus-at-startup 
   scale 1.25
+}
+
+output "DP-2" {
+  scale 1
+  position x=0 y=0
 }
 
 /-output "eDP-1" {
@@ -110,6 +116,7 @@ output "DP-2" {
 
 environment {
     DISPLAY ":0"
+    GTK_CSD "0"
     /* GDK_DPI_SCALE "1"
     GDK_SCALE "1" */
 }
@@ -279,6 +286,8 @@ spawn-at-startup "/home/rizki/.config/niri/scripts/walls.sh"
 spawn-at-startup "google-chrome-stable" "--profile-directory=Default"
 spawn-at-startup "gammastep-indicator"
 spawn-at-startup "sh" "-c" "sleep 2 && footclient"
+spawn-at-startup "wl-copy" "--clear"
+// spawn-at-startup "swayidle" "-w" "timeout" "600" "niri msg action power-off-monitors" "timeout" "900" "systemctl suspend" 
 
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.

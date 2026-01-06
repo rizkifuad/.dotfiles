@@ -64,6 +64,11 @@ M.setup = function()
 
   vim.diagnostic.config(config)
 
+vim.cmd [[
+hi DiagnosticUnderlineError  cterm=underline gui=undercurl guisp=#ed8796                                                                                                   
+hi DiagnosticUnderlineWarn  cterm=underline gui=undercurl guisp=#eed49f                                                                                                    
+]]
+
   -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   --   border = "rounded",
   -- })

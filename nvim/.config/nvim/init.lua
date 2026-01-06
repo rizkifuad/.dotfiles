@@ -84,7 +84,7 @@ require("lazy").setup({
 
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.8",
+    -- tag = "0.1.8",
     lazy = true,
     cmd = "Telescope",
     dependencies = {
@@ -160,8 +160,8 @@ require("lazy").setup({
 
   {
     "neovim/nvim-lspconfig",
-    lazy = true,
-    event = "BufRead",
+    -- lazy = true,
+    -- event = "BufRead",
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",

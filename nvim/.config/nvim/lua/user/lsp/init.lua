@@ -5,6 +5,7 @@ end
 
 require "user.plugins.fidget"
 local servers = { "jsonls", "cssls", "gopls", "html", "rust_analyzer", "astro", "ts_ls", "vuels", "intelephense", "tailwindcss"}
+vim.lsp.enable(servers)
 
 
 require("user.lsp.handlers").setup()
@@ -20,8 +21,10 @@ for _, server_name in pairs(servers) do
       opts = vim.tbl_deep_extend("force", server_custom_opts, opts)
     end
 
-    lspconfig[server_name].setup(opts)
+  vim.lsp.config(server_name, opts)
+    -- lspconfig[server_name].setup(opts)
 end
+
 
 require("mason").setup()
 
@@ -37,7 +40,7 @@ if not mason_nvim_dap_ok then
 end
 
 
-lspconfig.sourcekit.setup({
+--[[ lspconfig.sourcekit.setup({
   on_attach = require("user.lsp.handlers").on_attach,
   capabilities = require("user.lsp.handlers").capabilities,
 })
@@ -46,7 +49,7 @@ lspconfig.sourcekit.setup({
 lspconfig.dartls.setup({
   on_attach = require("user.lsp.handlers").on_attach,
   capabilities = require("user.lsp.handlers").capabilities,
-})
+}) ]]
 
 
 
