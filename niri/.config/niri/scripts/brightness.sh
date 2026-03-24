@@ -21,16 +21,19 @@ get_backlight() {
     echo "$LIGHT"
 }
 
-set_backlight() {
-    local value="$1"
-    ddcutil setvcp --noverify --skip-ddc-checks  --model $MONITOR 10 "$value" >/dev/null 2>&1
-    echo "$value" > "$CACHE_FILE"
-}
 
 # Notify
 notify_user() {
     notify-send -h string:x-canonical-private-synchronous:sys-notify \
         -u low -i "$icon" "Brightness : $(get_backlight)%"
+}
+
+
+set_backlight() {
+    local value="$1"
+    ddcutil setvcp --noverify --skip-ddc-checks  --model $MONITOR 10 "$value" >/dev/null 2>&1
+    echo "$value" > "$CACHE_FILE"
+    notify_user
 }
 
 # Increase brightness

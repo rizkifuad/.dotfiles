@@ -369,6 +369,7 @@ window-rule {
     match title=".*Obsidian.*"
     match title=".*scratchterminal.*"
     match title="^wiremix$"
+    match app-id="blueman-manager"
 
     open-floating true
 }
@@ -443,6 +444,8 @@ binds {
     Mod+D hotkey-overlay-title="Run a Docker: lazydocker" { spawn "~/.config/niri/scripts/ndrop.sh" "lazydocker" "footclient -T lazydocker lazydocker"; }
     Mod+Slash hotkey-overlay-title="Run a scratch terminal: scratch" { spawn "~/.config/niri/scripts/ndrop.sh" "scratchterminal" "footclient -T scratchterminal nvim /home/rizki/scratchpad"; }
     Mod+Shift+O hotkey-overlay-title="Choose an audio output: fuzzel-output" { spawn "~/.config/niri/scripts/fuzzel-output.sh"; }
+    // Mod+Shift+P hotkey-overlay-title="Powermenu: fuzzel~/.config/niri/scripts/brightness.shl-powermenu" { spawn "~/.config/niri/scripts/fuzzel-powermenu.sh"; }
+    Mod+M hotkey-overlay-title="Custom menu: fuzzel-monitor" { spawn "~/.config/niri/scripts/fuzzel-monitor.sh"; }
     Mod+Shift+W hotkey-overlay-title="Random wallpaper: rand-wallpaper" { spawn "~/.config/niri/scripts/walls.sh"; }
     Mod+W hotkey-overlay-title="List windows: windows" { spawn "~/.config/niri/scripts/fuzzel-windows.sh"; }
     Mod+G hotkey-overlay-title="Mouseless: wl-kbptr" { spawn "wl-kbptr"; }
@@ -677,7 +680,7 @@ binds {
     // Mod+Shift+Space { switch-layout "prev"; }
 
     Mod+P { screenshot; }
-    Mod+Shift+P hotkey-overlay-title="Record a Screen: wl-screenrec" { spawn "sh" "-c" "wl-screenrec --audio --audio-device alsa_output.pci-0000_0f_00.6.analog-stereo.monitor -g \"$(slurp)\""; }
+    // Mod+Shift+P hotkey-overlay-title="Record a Screen: wl-screenrec" { spawn "sh" "-c" "wl-screenrec --audio --audio-device alsa_output.pci-0000_0f_00.6.analog-stereo.monitor -g \"$(slurp)\""; }
     // Mod+Shift+P { screenshot-screen; }
     Alt+Print { screenshot-window; }
 

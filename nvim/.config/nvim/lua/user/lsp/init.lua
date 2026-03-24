@@ -4,9 +4,7 @@ if not status_ok then
 end
 
 require "user.plugins.fidget"
-local servers = { "jsonls", "cssls", "gopls", "html", "rust_analyzer", "astro", "ts_ls", "vuels", "intelephense", "tailwindcss"}
-vim.lsp.enable(servers)
-
+local servers = { "jsonls", "cssls", "gopls", "html", "rust_analyzer", "astro", "ts_ls", "vue_ls", "intelephense", "tailwindcss"}
 
 require("user.lsp.handlers").setup()
 
@@ -24,6 +22,8 @@ for _, server_name in pairs(servers) do
   vim.lsp.config(server_name, opts)
     -- lspconfig[server_name].setup(opts)
 end
+
+vim.lsp.enable(servers)
 
 
 require("mason").setup()
