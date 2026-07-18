@@ -1,4 +1,4 @@
-local status_ok, configs = pcall(require, "nvim-treesitter.configs")
+local status_ok, configs = pcall(require, "nvim-treesitter.config")
 if not status_ok then
   return
 end
@@ -137,19 +137,3 @@ configs.setup {
 require('nvim-ts-autotag').setup({
   filetypes = autotag_filetypes,
 })
-
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.blade = {
-  install_info = {
-    url = "https://github.com/EmranMR/tree-sitter-blade",
-    files = {"src/parser.c"},
-    branch = "main",
-  },
-  filetype = "blade"
-}
-
-vim.cmd [[
-  augroup BladeFiltypeRelated
-    au BufNewFile,BufRead *.blade.php set ft=blade
-  augroup END
-]]

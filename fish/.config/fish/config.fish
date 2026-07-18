@@ -40,6 +40,7 @@ if status is-interactive
   set PATH $HOME/.local/bin $PATH
   # set PATH /opt/homebrew/bin $PATH
   set PATH $HOME/.n/bin $PATH
+  set PATH $HOME/.npm-global/bin $PATH
   set PATH $GOBIN $PATH
   set PATH $HOME/.build/flutter/bin $PATH
   set PATH $HOME/.cargo/bin $PATH
@@ -109,3 +110,9 @@ set -x N_PREFIX "$HOME/.n"; contains "$N_PREFIX/bin" $PATH; or set -a PATH "$N_P
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init.fish 2>/dev/null || :
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/rizki/work/clipboardnation/M3Studio/google-cloud-sdk/path.fish.inc' ]; . '/home/rizki/work/clipboardnation/M3Studio/google-cloud-sdk/path.fish.inc'; end
+
+# OpenClaw Completion
+test -f "/home/rizki/.openclaw/completions/openclaw.fish"; and source "/home/rizki/.openclaw/completions/openclaw.fish"

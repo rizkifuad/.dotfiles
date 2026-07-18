@@ -99,4 +99,8 @@ commander.add({
     desc = "Restart LSP",
     cmd = "<CMD>LspRestart<CR>",
   },
+  {
+    desc = "Scratchpad",
+    cmd = "<CMD>tabnew ~/scratchpad<CR>",
+  },
 })

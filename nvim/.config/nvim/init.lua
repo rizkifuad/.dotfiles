@@ -112,10 +112,7 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "windwp/nvim-ts-autotag",
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "windwp/nvim-ts-autotag",
       "andymass/vim-matchup",
-      "nvim-treesitter/playground",
       {
         "numtostr/comment.nvim",
         config = function()
@@ -125,10 +122,16 @@ require("lazy").setup({
     },
     lazy = true,
     event = "BufRead",
+    branch = "main",
     config = function()
       require "user.plugins.treesitter"
     end
   },
+{
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  branch = "main",
+  dependencies = { "nvim-treesitter/nvim-treesitter" },
+},
 
   {
     'JoosepAlviste/nvim-ts-context-commentstring',

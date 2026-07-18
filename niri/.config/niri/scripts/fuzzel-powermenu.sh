@@ -21,15 +21,15 @@ chosen=$(echo -e "$options" | fuzzel --dmenu \
 
 [ -z "$chosen" ] && exit
 
-# Confirmation menu
-confirm=$(echo -e "  Cancel\n  Confirm" | fuzzel --dmenu \
-    --prompt "⚠ Confirm  " \
-    --width 20 \
-    --lines 2 \
-    --border-radius 10 \
-    )
-
-[[ "$confirm" != *Confirm ]] && exit
+## Confirmation menu
+#confirm=$(echo -e "  Cancel\n  Confirm" | fuzzel --dmenu \
+#    --prompt "⚠ Confirm  " \
+#    --width 20 \
+#    --lines 2 \
+#    --border-radius 10 \
+#    )
+#
+#[[ "$confirm" != *Confirm ]] && exit
 
 case "$chosen" in
     *Shutdown)
@@ -42,7 +42,7 @@ case "$chosen" in
         systemctl suspend
         ;;
     *Lock)
-        swaylock || hyprlock || loginctl lock-session
+        gtklock
         ;;
     *Logout)
         if [ -n "$SWAYSOCK" ]; then
