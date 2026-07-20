@@ -93,7 +93,6 @@ keymap('n', '<C-l>', ':call WinMove("l")<cr>', { silent = true })
 
 keymap('n', '[<space>', ':<c-u>put! =repeat(nr2char(10), v:count1)<cr>', opts)
 keymap('n', ']<space>', ':<c-u>put =repeat(nr2char(10), v:count1)<cr>', opts)
-
 keymap('n', '[e', ':<c-u>execute "move -1-". v:count1<cr>', opts)
 keymap('n', ']e', ':<c-u>execute "move +". v:count1<cr>', opts)
 
@@ -112,8 +111,8 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 --Term--
--- keymap("t", "<Esc>", "<C-\\><C-n>", opts)
--- keymap("n", "<C-t>", ":tabnew<cr>:term<cr>a", opts)
+-- keymap("t", "<Ekeysc>", "<C-\\><C-n>", opts)
+-- keymap("n", "<Ckey-t>", ":tabnew<cr>:term<cr>a", opts)
 
 -- Debugging --
 keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)

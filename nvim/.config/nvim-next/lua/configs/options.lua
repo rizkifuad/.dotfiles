@@ -30,7 +30,7 @@ local options = {
   number = true,                                -- set numbered lines
   relativenumber = true,                        -- set relative numbered lines
   numberwidth = 4,                              -- set number column width to 2 {default 4}
-  -- signcolumn = "yes",                        -- always show the sign column, otherwise it would shift the text each time
+  -- signcolumn = "yes",                       -- always show the sign column, otherwise it would shift the text each time
   wrap = false,                                 -- display lines as one long line
   scrolloff = 8,                                -- is one of my fav
   sidescrolloff = 8,
@@ -44,6 +44,10 @@ vim.opt.shortmess:append("c")
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+--Remap colon as leader key
+vim.g.mapleader = ","
+vim.g.maplocalleader = ","
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
