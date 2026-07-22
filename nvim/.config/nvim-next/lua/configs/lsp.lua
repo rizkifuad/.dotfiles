@@ -14,7 +14,16 @@ require('mason-lspconfig').setup({
 
 -- Enable snippets (built in)
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.completion.completionItem = {
+  snippetSupport = true,
+  resolveSupport = {
+    properties = {
+      "documentation",
+      "detail",
+      "additionalTextEdits",
+    },
+  },
+}
 capabilities.textDocument.documentSymbol = {
   dynamicRegistration = false,
   hierarchicalDocumentSymbolSupport = true, -- <--- Enabler for nested outline symbols
@@ -38,14 +47,12 @@ end
 vim.iter(lsp_servers):each(
 function(lsp_server)
   if not has_lsp_config(lsp_server) then
-    --vim.api.nvim_echo({ { 'Warning. lsp server ' .. lsp_server .. ' has no config file in the config lsp folder.' , 'WarningMsg' } }, true, {})
+    vim.api.nvim_echo({ { 'Warning. lsp server ' .. lsp_server .. ' has no config file in the config lsp folder.' , 'WarningMsg' } }, true, {})
     else
       vim.lsp.enable(lsp_server)
   end
 end
-
 )
-
 
 vim.diagnostic.config({
   -- disable virtual text
@@ -82,5 +89,5 @@ local C = require("catppuccin.palettes").get_palette()
 
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineError",{ undercurl=true, bg = C.base, fg = C.red })
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { undercurl=true, bg = C.base, fg = C.blue })
-vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl=true, bg = C.base, fg = C.pitch })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl=true, bg = C.base, fg = C.yellow })
 vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl=true, bg = C.base, fg = C.teal })

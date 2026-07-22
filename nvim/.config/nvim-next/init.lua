@@ -32,7 +32,10 @@ require('nvim-treesitter.config').setup({
 vim.pack.add({
   {src = gh('windwp/nvim-autopairs')}
 })
-require("nvim-autopairs").setup()
+require("nvim-autopairs").setup({
+  map_cr = false,
+  map_bs = true,
+})
 
 vim.pack.add({
   { src = gh('NvChad/nvim-colorizer.lua') },
