@@ -47,7 +47,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map('<leader>dp', function() vim.diagnostic.jump({ count = -1, float = true }) end, 'Diagnostic Previous')
     map('<leader>dc', vim.diagnostic.open_float, 'Diagnostic Open')
     map('<space>e', vim.diagnostic.open_float, 'Diagnostic Open')
-    map('<leader>da', function() MiniExtra.pickers.diagnostic() end, 'Diagnostic List')
+    map('<leader>da', MiniExtra.pickers.diagnostic, 'Diagnostic List')
+    map('<leader>lc',  vim.lsp.buf.code_action, 'Code Action')
+    map('<leader>lr',  vim.lsp.buf.rename, 'Rename')
   end,
 })
 
