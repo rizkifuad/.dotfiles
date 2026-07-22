@@ -1,7 +1,3 @@
--- justinhj Neovim config
--- 0.12.0 or later required
-
--- New UI opt-in
 require('vim._core.ui2').enable({})
 
 require('configs.autocmds')
@@ -38,9 +34,6 @@ vim.pack.add({
 })
 require("nvim-autopairs").setup()
 
--- Quality of life plugins. Colorthemes, keymaps etc
-
--- Colorizer shows html and other colour encodings in their colour
 vim.pack.add({
   { src = gh('NvChad/nvim-colorizer.lua') },
 })
@@ -52,7 +45,6 @@ require 'colorizer'.setup {
     mode = 'foreground',
   }
 }
-
 
 -- Fugitive
 vim.pack.add({
@@ -67,9 +59,6 @@ vim.pack.add({
 require('configs/flash')
 require('configs/commander')
 
-
-
-
 -- Small selection of mini plugins
 vim.pack.add({
   {
@@ -80,9 +69,7 @@ vim.pack.add({
 
 require('mini.extra').setup()
 require('mini.git').setup()
-require('mini.icons').setup({
-  style='none'
-})
+require('mini.icons').setup()
 require('mini.completion').setup()
 require('mini.diff').setup({
   mappings = { apply =  ''},
@@ -92,7 +79,6 @@ require('mini.diff').setup({
 
 
 require('configs.mini-pick')
-require('mini.align').setup()
 require('configs.mini-files')
 require('configs.mini-clue')
 require('configs.mini-statusline')
