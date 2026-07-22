@@ -36,7 +36,7 @@ local options = {
   sidescrolloff = 8,
   foldmethod = "expr",
   foldexpr = "v:lua.vim.lsp.foldexpr()",
-  foldlevel = 99
+  foldlevel = 99,
 }
 
 vim.opt.shortmess:append("c")

@@ -107,6 +107,7 @@ local function lsp_keymaps(client, bufnr)
   local builtin = require('telescope.builtin')
 
 
+
   buf_set_keymap('n', 'gr', '<cmd>lua require("telescope.builtin").lsp_references({file_ignore_patterns = { "test", "mock" }, show_line = false })<cr>', opts)
   buf_set_keymap('n', 'gd', '<cmd>lua require("telescope.builtin").lsp_definitions({file_ignore_patterns = { "test", "mock" }, show_line = false })<cr>', opts)
   --[[ vim.keymap.set('n', 'gd',

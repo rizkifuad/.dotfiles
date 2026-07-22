@@ -16,7 +16,7 @@ statusline.setup({
         { hl = 'MiniStatuslineDevinfo', strings = { git } },
         '%<', -- Truncate here
         { hl = 'MiniStatuslineFilename', strings = { filename, is_busy } },
-        { hl = 'MiniStatuslineDevinfo',  strings = { diagnostics } },
+        { hl = '',  strings = { diagnostics } },
         '%=', -- Right align
         { hl = 'MiniStatuslineDevinfo',  strings = { progress } },
         { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },

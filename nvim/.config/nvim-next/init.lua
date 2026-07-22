@@ -13,76 +13,32 @@ require('configs.tabline')
 -- Plugins for treesitter and lsp server management (Mason)
 local gh = function(x) return 'https://github.com/' .. x end
 
+
+vim.pack.add({
+  { src = gh('catppuccin/nvim') },
+})
+
+require("catppuccin").setup({ styles = { diagnostics = { "undercurl" } } })
+vim.cmd('colorscheme catppuccin-macchiato')
+
 vim.pack.add({
   { src = gh('mason-org/mason.nvim') },
   { src = gh('mason-org/mason-lspconfig.nvim') },
   { src = gh('nvim-treesitter/nvim-treesitter'), version = 'main' },
 })
-
--- Setup LSP
-
--- Add each lsp server you want to enable here
--- Add the config to the lsp folder
--- Each LSP server will be added by Mason and enabled
-local lsp_servers = {
-  'pylsp',
-  'zls',
-  'rust_analyzer',
-  'lua_ls',
-  'ts_ls',
-  'gopls',
-}
-
-require('mason').setup()
-require('mason-lspconfig').setup({
-  ensure_installed = lsp_servers,
-  automatic_enable = false,
-})
-
--- Enable snippets (built in)
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-vim.lsp.config('*', {
-  capabilities = capabilities,
-  on_attach = function(client, bufnr)
-  end
-})
-
--- Enable LSP completion (this connects LSP to the native menu)
-
-local function has_lsp_config(server_name)
-  local config_path = vim.fn.stdpath("config")
-  local target_path = vim.fs.joinpath(config_path, "lsp", server_name .. ".lua")
-  if vim.uv.fs_stat(target_path) then
-    return true
-  else
-    return false
-  end
-end
-
-vim.iter(lsp_servers):each(
-function(lsp_server)
-  if not has_lsp_config(lsp_server) then
-    vim.api.nvim_echo({ { 'Warning. lsp server ' .. lsp_server .. ' has no config file in the config lsp folder.' , 'WarningMsg' } }, true, {})
-    else
-      vim.lsp.enable(lsp_server)
-  end
-end
-)
+require('configs.lsp')
 
 -- Treesitter
-
 require('nvim-treesitter.config').setup({
   install_dir = vim.fn.stdpath('data') .. '/site',
 })
 
--- Quality of life plugins. Colorthemes, keymaps etc
 vim.pack.add({
-  { src = gh('catppuccin/nvim') },
+  {src = gh('windwp/nvim-autopairs')}
 })
+require("nvim-autopairs").setup()
 
-vim.cmd('colorscheme catppuccin-macchiato')
+-- Quality of life plugins. Colorthemes, keymaps etc
 
 -- Colorizer shows html and other colour encodings in their colour
 vim.pack.add({
@@ -104,6 +60,15 @@ vim.pack.add({
     src = gh('tpope/vim-fugitive'),
   } })
 
+vim.pack.add({
+  {
+    src = gh('folke/flash.nvim'),
+  } })
+require('configs/flash')
+require('configs/commander')
+
+
+
 
 -- Small selection of mini plugins
 vim.pack.add({
@@ -115,11 +80,19 @@ vim.pack.add({
 
 require('mini.extra').setup()
 require('mini.git').setup()
-require('mini.icons').setup()
-require('mini.jump2d').setup()
-require('mini.pick').setup()
-require('mini.pairs').setup()
+require('mini.icons').setup({
+  style='none'
+})
+require('mini.completion').setup()
+require('mini.diff').setup({
+  mappings = { apply =  ''},
+  view = { style = "sign", signs = {
+  add = '▎', change = '▎', delete = ' '
+}}})
 
+
+require('configs.mini-pick')
+require('mini.align').setup()
 require('configs.mini-files')
 require('configs.mini-clue')
 require('configs.mini-statusline')

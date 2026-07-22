@@ -78,7 +78,7 @@ output "DP-1" {
   scale 1.25
 }
 
-output "DP-2" {
+output "HDMI-A-1" {
   scale 1
   position x=0 y=0
   mode "2560x1440@120.000"
@@ -120,6 +120,8 @@ environment {
     GTK_CSD "0"
     /* GDK_DPI_SCALE "1"
     GDK_SCALE "1" */
+    WLR_RENDERER "vulkan"
+
 }
 
 // Settings that influence how windows are positioned and sized.
