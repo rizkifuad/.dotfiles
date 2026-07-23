@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.keymap.set('n', keys, func, { buffer = args.buf, desc = 'LSP: ' .. desc })
     end
 
-    map('gd', function() MiniExtra.pickers.lsp({ scope = "definition" }) end, '[G]oto [D]efinition')
+    map('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
     map('gD', function() MiniExtra.pickers.lsp({ scope = "declaration" }) end, '[G]oto [D]eclaration')
     map('<space>f', vim.lsp.buf.format, 'Format')
     map('gO', function() MiniExtra.pickers.lsp({ scope = 'document_symbol' }) end, 'Document symbol')

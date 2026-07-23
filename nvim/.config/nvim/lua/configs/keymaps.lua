@@ -144,17 +144,3 @@ map("n", "<C-k>", function() win_move("k") end)
 map("n", "<C-l>", function() win_move("l") end)
 
 
-vim.keymap.set("i", "<CR>", function()
-  if vim.fn.pumvisible() == 1 then
-    return vim.api.nvim_replace_termcodes("<C-y>", true, false, true)
-  end
-
-  return vim.api.nvim_replace_termcodes(
-    "<Plug>(nvim-autopairs-newline)",
-    true,
-    false,
-    true
-  )
-end, {
-  expr = true,
-})

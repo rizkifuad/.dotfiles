@@ -97,7 +97,7 @@ if status is-interactive
 
   abbr -a p "pnpm"
 
-  abbr -a v "NVIM_APPNAME=nvim-next nvim"
+  abbr -a v "nvim"
 
   alias bunx="bun x"
 
