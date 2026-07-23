@@ -36,6 +36,8 @@ if status is-interactive
   # set -x JAVA_HOME /opt/homebrew/opt/openjdk
   set -x JAVA_HOME /opt/android-studio/jbr
 
+  set -x RIPGREP_CONFIG_PATH $HOME/.ripgreprc
+
   # Setting PATH
   set PATH $HOME/.local/bin $PATH
   # set PATH /opt/homebrew/bin $PATH

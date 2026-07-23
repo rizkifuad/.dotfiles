@@ -28,13 +28,8 @@ map('n', '<leader><leader>c', function()
 end, { desc = 'Lua evaluate current file' })
 
 -- Picker
-map('n', '<C-p>', function()
-  require('mini.pick').builtin.files({ tool = 'fd' })
-end, opts('Pick files'))
-
-map('n', '<Leader>f', function()
-  require('mini.pick').builtin.grep_live({ tool = 'rg' })
-end, opts('Pick grep_live'))
+map('n', '<C-p>', ':Pick files_with_hidden<cr>', opts('Pick files'))
+map('n', '<Leader>f', ':Pick grep_live<cr>', opts('Pick grep_live'))
 
 
 -- QoL Navigation

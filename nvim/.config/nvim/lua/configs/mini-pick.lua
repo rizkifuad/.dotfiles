@@ -37,6 +37,17 @@ vim.api.nvim_set_hl(0, "MiniPickNormal", { bg = C.crust })
 vim.api.nvim_set_hl(0, "MiniPickBorder", { fg = C.crust, bg = C.crust }) -- Match fg to bg
 vim.api.nvim_set_hl(0, "MiniPickBorderText", { fg = C.crust, bg = C.lavender, bold = true })
 vim.api.nvim_set_hl(0, "MiniPickMatchCurrent", { bg = C.surface0, bold = true })
-vim.api.nvim_set_hl(0, 'MiniPickPrompt',       { bg = C.crust, fg = C.overlay1 })
+vim.api.nvim_set_hl(0, 'MiniPickPrompt', { bg = C.crust, fg = C.overlay1 })
 vim.api.nvim_set_hl(0, 'MiniPickPromptPrefix', { bg = C.crust, fg = C.surface2, bold = true })
-vim.api.nvim_set_hl(0, 'MiniPickBorder',       { bg = C.crust, fg = C.crust })
+vim.api.nvim_set_hl(0, 'MiniPickBorder', { bg = C.crust, fg = C.crust })
+
+pick.registry.files_with_hidden = function()
+  -- Add the --hidden flag to the fd command
+  local command = { 'fd', '--type=f', '--no-follow', '--color=never', '--hidden', '--no-ignore-vcs', '--exclude=.git' }
+  local show_with_icons = function(buf_id, items, query)
+    return pick.default_show(buf_id, items, query, { show_icons = true })
+  end
+  local source = { name = 'Files with hidden', show = show_with_icons }
+
+  return pick.builtin.cli({ command = command }, { source = source })
+end
