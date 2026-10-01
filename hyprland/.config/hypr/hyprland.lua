@@ -22,13 +22,13 @@ hl.monitor({
   position = "auto-left"
 })
 
+
 hl.monitor({
   output = "DP-2",
   mode = "3840x2160@60",
   position = "0x0",
   scale = 1.25,
 })
-
 
 ---------------------
 ---- MY PROGRAMS ----
@@ -272,6 +272,8 @@ hl.dsp.window.fullscreen_state({ internal = -1, client = -1 })
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
+hl.bind(mainMod .. " + SHIFT + R",
+  hl.dsp.exec_cmd("hyprctl reload config"))
 hl.bind(mainMod .. " + SHIFT + E",
   hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ layout_aware = true }))
@@ -554,7 +556,7 @@ hl.window_rule({
 
 hl.bind("SUPER + slash", function()
   hl.dispatch(hl.dsp.exec_cmd(
-    [[hyprctl clients -j | jq -e '.[] | select(.title == "scratchtodo")' >/dev/null || footclient -E -T scratchtodo tuxedo]]
+    [[hyprctl clients -j | jq -e '.[] | select(.title == "scratchtodo")' >/dev/null || footclient -E -T scratchtodo tuxedo ~/notes/todo.txt]]
   ))
 
   hl.dispatch(hl.dsp.workspace.toggle_special("scratchtodo"))
@@ -583,6 +585,40 @@ hl.window_rule({
     title = "scratchyazi",
   },
   workspace = "special:scratchyazi",
+  float = true,
+  size = { 1280, 800 }
+})
+
+
+hl.bind("SUPER + d", function()
+  hl.dispatch(hl.dsp.exec_cmd(
+    [[hyprctl clients -j | jq -e '.[] | select(.title == "scratchlazydocker")' >/dev/null || footclient -E -T scratchlazydocker lazydocker]]
+  ))
+
+  hl.dispatch(hl.dsp.workspace.toggle_special("scratchlazydocker"))
+end)
+
+hl.window_rule({
+  match = {
+    title = "scratchlazydocker",
+  },
+  workspace = "special:scratchlazydocker",
+  float = true,
+  size = { 1280, 800 }
+})
+
+hl.window_rule({
+  match = {
+    title = "yazicurrent",
+  },
+  float = true,
+  size = { 1280, 800 }
+})
+
+hl.window_rule({
+  match = {
+    class = "org.pulseaudio.pavucontrol",
+  },
   float = true,
   size = { 1280, 800 }
 })

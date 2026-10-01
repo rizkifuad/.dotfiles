@@ -109,7 +109,7 @@ map("n", "<leader>xt", "<cmd>lua require'dap'.terminate()<cr>", opts("DapTermina
 -- map('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
 
 -- AI coding  --
-map('n', '<c-,>', ":t.<cr>" , opts("Duplicate line"))
+map('n', '<c-,>', ":t.<cr>", opts("Duplicate line"))
 
 
 
@@ -167,11 +167,14 @@ map('n', '<leader>tv', function()
   vim.cmd.start()
 end, opts('Terminal split vertical'))
 map('n', '<C-t>', '<Cmd>FloatermToggle<cr>', opts('Terminal split vertical'))
-map({'n', 't'}, '<C-t>', '<Cmd>FloatermToggle<cr>', opts('Terminal split vertical'))
+map({ 'n', 't' }, '<C-t>', '<Cmd>FloatermToggle<cr>', opts('Terminal split vertical'))
 
 -- Multicursor
 map('n', '<space>a', "*:g//normal! nQq=<cr>", opts('Multicursor matches'))
-map('n', '<space>l', ":e!<cr>", opts('Multicursor clear'))
+map('n', '<space>l', function()
+  local mc_ns = vim.api.nvim_create_namespace('nvim.multicursor')
+  vim.api.nvim_buf_clear_namespace(0, mc_ns, 0, -1)
+end, opts('Multicursor clear'))
 map('n', '<down>', "Qj", opts('Multicursor clear'))
 
 
@@ -193,3 +196,18 @@ map('n', '<leader>sw', '<Cmd>lua MiniSessions.write()<CR>', opts('Write current'
 map('n', '<leader>sr', '<Cmd>PickSession<CR>', opts('Pick Session'))
 map('n', '<leader>sk', '<Cmd>%detach<CR>', opts('Kill Other UI Clients'))
 
+
+vim.keymap.set("n", "<leader>y", function()
+  local file = vim.fn.expand("%:p")
+
+  vim.fn.jobstart({
+    "footclient",
+    "-e",
+    "-T",
+    "yazicurrent",
+    "yazi",
+    file,
+  }, {
+    detach = true,
+  })
+end, { desc = "Open Yazi at current file" })

@@ -5,6 +5,7 @@
 workspace "work"
 workspace "chat"
 workspace "game"
+workspace "tools"
 workspace "stash"
 
 // Input device configuration.
@@ -75,13 +76,13 @@ input {
     // focus-follows-mouse max-scroll-amount="0%"
 }
 
-output "DP-1" {
+output "DP-2" {
   focus-at-startup 
   scale 1.25
-  mode "3840x2160@60.000"
+  mode "3840x2160"
 }
 
-output "DP-2" {
+output "HDMI-A-2" {
   position x=0 y=0
   mode "2560x1440@120.000"
 }
@@ -441,6 +442,7 @@ binds {
     Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+W { spawn-sh "noctalia msg panel-toggle launcher /win"; }
     Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+B { spawn-sh "noctalia msg bar-toggle"; }
     Mod+Comma { spawn-sh "noctalia msg settings-toggle"; }
     Alt+Tab { spawn-sh "noctalia msg window-switcher"; }
 
@@ -530,10 +532,10 @@ binds {
     Mod+Ctrl+K     { focus-monitor-up; }
     Mod+Ctrl+L     { focus-monitor-right; }
 
-    Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
-    Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
-    Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
-    Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
+    Mod+Alt+Left  { move-column-to-monitor-left; }
+    Mod+Alt+Down  { move-column-to-monitor-down; }
+    Mod+Alt+Up    { move-column-to-monitor-up; }
+    Mod+Alt+Right { move-column-to-monitor-right; }
     Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
     Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
     Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
@@ -649,8 +651,8 @@ binds {
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
 
-    Mod+F { maximize-column; }
-    Mod+Shift+F { fullscreen-window; }
+    Mod+F { fullscreen-window; }
+    Mod+Shift+F { maximize-column; }
 
     // While maximize-column leaves gaps and borders around the window,
     // maximize-window-to-edges doesn't: the window expands to the edges of the screen.

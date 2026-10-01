@@ -1,3 +1,4 @@
 return {
-    cmd = {"ols"}
+  cmd = { "ols" },
+  filetypes = { "odin" },
 }

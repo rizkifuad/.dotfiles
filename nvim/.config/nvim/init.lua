@@ -118,10 +118,8 @@ later(function()
   vim.pack.add({ gh('nvzone/volt') })
   vim.pack.add({ gh('rizkifuad/floaterm') })
   require('floaterm').setup({
-    size = { h = 90, w = 90 },
+    size = { h = 100, w = 100 },
     zmx = { enabled = true }
   })
   vim.pack.add({ gh('phanen/vbi.nvim') })
-  -- vim.pack.add({ gh('jake-stewart/multicursor.nvim') })
-  -- require("configs.multicursor")
 end)
