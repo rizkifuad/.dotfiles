@@ -8,6 +8,12 @@ pick.setup({
         pick.default_choose_marked(pick.get_picker_matches().all)
       end,
     },
+    sys_paste = {
+      char = "<D-v>",
+      func = function()
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-r>+", true, true, true), "n", true)
+      end,
+    },
   },
   window = {
     prompt_prefix = '  ',
